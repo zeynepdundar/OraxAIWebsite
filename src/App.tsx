@@ -10,6 +10,7 @@ import PlatformSection from './components/sections/PlatformSection';
 import ProductsSection from './components/sections/ProductsSection';
 import SpotlightSection from './components/sections/SpotlightSection';
 import { Language, siteContent } from './content/siteContent';
+import DemoRequestPage from './pages/DemoRequestPage';
 
 function App() {
   const [language, setLanguage] = useState<Language>('tr');
@@ -23,13 +24,19 @@ function App() {
     document.title = copy.metaTitle;
   }, [copy.metaTitle, language]);
 
+  const isDemoPage = window.location.pathname === '/demo';
+
   useEffect(() => {
+    if (isDemoPage) {
+      return;
+    }
+
     document.body.style.overflow = privacyOpen ? 'hidden' : '';
 
     return () => {
       document.body.style.overflow = '';
     };
-  }, [privacyOpen]);
+  }, [isDemoPage, privacyOpen]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -44,6 +51,22 @@ function App() {
   }, []);
 
   const closeMenus = () => setMobileOpen(false);
+
+  if (isDemoPage) {
+    return (
+      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.08),transparent_28%),radial-gradient(circle_at_right_10%_top_16%,rgba(31,79,120,0.06),transparent_24%),linear-gradient(180deg,#f7f8f9_0%,#edf1f4_100%)]">
+        <Header
+          copy={copy}
+          language={language}
+          mobileOpen={mobileOpen}
+          onCloseMenu={closeMenus}
+          onToggleMenu={() => setMobileOpen((open) => !open)}
+          onLanguageChange={setLanguage}
+        />
+        <DemoRequestPage />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.08),transparent_28%),radial-gradient(circle_at_right_10%_top_16%,rgba(31,79,120,0.06),transparent_24%),linear-gradient(180deg,#f7f8f9_0%,#edf1f4_100%)]">

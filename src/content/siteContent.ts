@@ -33,6 +33,9 @@ export type SiteCopy = {
     primaryCta: string;
     secondaryCta: string;
     metrics: string[];
+    features: string[];
+    title2:string;
+    text:string
   };
   showcaseTitle: string;
   showcaseText: string;
@@ -113,14 +116,22 @@ export const siteContent: Record<Language, SiteCopy> = {
       title: 'Yapay zeka destekli',
       highlight: 'operasyon platformu',
       lead:
-        'OraxAI; depo operasyonlari, stok, lokasyon, palet hareketleri ve izlenebilirlik sureclerini tek veri yapisi ve karar destegiyle yonetmeniz icin tasarlanmis kurumsal bir calisma platformudur.',
-      primaryCta: 'Ucretsiz demo alin',
-      secondaryCta: 'Urunleri inceleyin',
+        'OraxAI; depo operasyonları, stok, lokasyon, palet hareketleri ve izlenebilirlik süreçlerini tek veri yapısını ve karar desteğiyle yönetmeniz için tasarlanmış kurumsal bir çalışma platformudur.',
+      primaryCta: 'Ücretsiz demo alın',
+      secondaryCta: 'Ürünleri inceleyin',
       metrics: [
-        'Stok ve lokasyon yonetimi',
-        'Palet ve lot izlenebilirligi',
-        'AI destekli operasyon akislari',
+        'WMS · TMS · LMS · TTS · QMS',
+        'Entegre modüller',
+        'Yerleşik AI & LLM',
+        'Kurumsal ölçek'
       ],
+      features:[
+        'Stok ve lokasyon yönetimi',
+        'Palet ve lot izlenebilirliği',
+        'AI destekli operasyon akışları',
+      ],
+      title2: "Yapay Zeka Destekli Depo",
+      text:"Gerçek Operasyonlar için Üretildi"
     },
     showcaseTitle: 'Tek ürün değil, tek operasyon dilinde',
     showcaseText:
@@ -131,8 +142,8 @@ export const siteContent: Record<Language, SiteCopy> = {
         'Modul bazında FDA, TITCK, EU GMP/GDP, Annex 11, GAMP 5 ve ALCOA+ gibi cercevelere uyum yaklasimi urun ekipleriyle netlestirilir. Teknik mimari ve validasyon paketi talep uzerine paylasilir.',
       chips: [
         'Çok modüllü platform',
-        'Denetlenebilir kayit disiplini',
-        'Ilac ve regule sektor odagi',
+        'Denetlenebilir kayıt disiplini',
+        'İlaç ve regüle sektör odağı',
         'SAP · Oracle · ERP ekosistemi',
       ],
     },
@@ -276,10 +287,18 @@ export const siteContent: Record<Language, SiteCopy> = {
       primaryCta: 'Book a free demo',
       secondaryCta: 'Explore modules',
       metrics: [
+        'WMS · TMS · LMS · TTS · QMS',
+        'Integrated',
+        'Yerleşik AI & LLM',
+        'Kurumsal ölçek'
+      ],
+      features: [
         'Inventory and location control',
         'Pallet and lot traceability',
         'AI-assisted workflows',
       ],
+      title2: "AI-Powered Warehouse",
+      text:"Built for Real Warehouse Operations" 
     },
     showcaseTitle: 'Not separate tools, one operational language',
     showcaseText:

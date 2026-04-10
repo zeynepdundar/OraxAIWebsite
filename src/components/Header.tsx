@@ -17,6 +17,9 @@ function Header({
   onToggleMenu,
   onLanguageChange,
 }: HeaderProps) {
+  const isHomePage = window.location.pathname === '/';
+  const homeHref = isHomePage ? '#home' : '/#home';
+
   const navItems: Array<[string, string]> = [
     ['home', copy.nav.home],
     ['products', copy.nav.products],
@@ -31,7 +34,7 @@ function Header({
       <div className="container flex min-h-[82px] items-center justify-between gap-4">
         <a
           className="inline-flex items-center gap-3"
-          href="#home"
+          href={homeHref}
           aria-label={copy.brandAria}
           onClick={onCloseMenu}
         >
@@ -65,7 +68,7 @@ function Header({
               <li key={id}>
                 <a
                   className="transition-colors hover:text-brand-deep focus-visible:text-brand-deep"
-                  href={`#${id}`}
+                  href={isHomePage ? `#${id}` : `/#${id}`}
                   onClick={onCloseMenu}
                 >
                   {label}
@@ -101,7 +104,7 @@ function Header({
             </div>
             <a
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-brand-deep to-brand px-5 py-4 font-bold text-white shadow-[0_14px_30px_rgba(15,93,97,0.18)] transition-all hover:-translate-y-px hover:shadow-[0_18px_36px_rgba(15,93,97,0.24)]"
-              href="#contact"
+              href="/demo"
               onClick={onCloseMenu}
             >
               {copy.nav.demo}
