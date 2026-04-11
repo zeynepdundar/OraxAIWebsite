@@ -11,6 +11,7 @@ import ProductsSection from './components/sections/ProductsSection';
 import SpotlightSection from './components/sections/SpotlightSection';
 import { Language, siteContent } from './content/siteContent';
 import DemoRequestPage from './pages/DemoRequestPage';
+import { applySeo } from './seo/applySeo';
 
 function App() {
   const [language, setLanguage] = useState<Language>('tr');
@@ -21,8 +22,21 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = copy.metaTitle;
-  }, [copy.metaTitle, language]);
+    const path = window.location.pathname === '/demo' ? '/demo' : '/';
+    const isDemo = path === '/demo';
+    applySeo({
+      title: isDemo ? copy.demoMetaTitle : copy.metaTitle,
+      description: isDemo ? copy.demoMetaDescription : copy.metaDescription,
+      path,
+      language,
+    });
+  }, [
+    copy.demoMetaDescription,
+    copy.demoMetaTitle,
+    copy.metaDescription,
+    copy.metaTitle,
+    language,
+  ]);
 
   const isDemoPage = window.location.pathname === '/demo';
 

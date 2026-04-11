@@ -14,6 +14,9 @@ export type PillarItem = {
 
 export type SiteCopy = {
   metaTitle: string;
+  metaDescription: string;
+  demoMetaTitle: string;
+  demoMetaDescription: string;
   brandAria: string;
   nav: {
     home: string;
@@ -132,6 +135,11 @@ export const siteContent: Record<Language, SiteCopy> = {
   tr: {
     metaTitle:
       'OraxAI - AI tabanli kurumsal operasyon platformu | WMS, TMS, LMS, TTS, QMS',
+    metaDescription:
+      'OraxAI: yapay zeka destekli kurumsal operasyon platformu. WMS, TMS, LMS, TTS ve QMS ile depo, sevkiyat, eğitim, izlenebilirlik ve kaliteyi tek veri modelinde birleştirin. SAP, Oracle ve Dynamics entegrasyonu; regüle sektörlere uygun tasarım.',
+    demoMetaTitle: 'Ücretsiz demo talebi | OraxAI',
+    demoMetaDescription:
+      'OraxAI WMS, TMS, LMS, TTS ve QMS için demo talep edin. Ekibimiz ihtiyacınıza göre canlı veya kayıtlı oturum planlar; modül ve zaman penceresine göre dönüş yapar.',
     brandAria: 'OraxAI ana sayfa',
     nav: {
       home: 'Ana Sayfa',
@@ -333,6 +341,11 @@ export const siteContent: Record<Language, SiteCopy> = {
   en: {
     metaTitle:
       'OraxAI - AI-native enterprise operations platform | WMS, TMS, LMS, TTS, QMS',
+    metaDescription:
+      'OraxAI is an AI-native enterprise operations platform. Unify WMS, TMS, LMS, TTS, and QMS with ERP integrations (SAP, Oracle, Dynamics) and compliance-ready design for pharma and regulated operations.',
+    demoMetaTitle: 'Request a demo | OraxAI',
+    demoMetaDescription:
+      'Request an OraxAI demo for WMS, TMS, LMS, TTS, or QMS. Our team schedules a live or recorded walkthrough based on your modules, timeline, and operational needs.',
     brandAria: 'OraxAI home',
     nav: {
       home: 'Home',
