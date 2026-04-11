@@ -42,7 +42,7 @@ function SpotlightSection({ copy }: SpotlightSectionProps) {
                   WMS Demo
                 </p>
                 <p className="mt-3 text-base leading-7 text-muted">
-                  Demo ve ekran kayitlari ile WMS deneyimi canli olarak gosterilebilir.
+                  {copy.spotlight.action}
                 </p>
               </div>
             </div>

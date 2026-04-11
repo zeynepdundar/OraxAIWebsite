@@ -63,13 +63,13 @@ function App() {
           onToggleMenu={() => setMobileOpen((open) => !open)}
           onLanguageChange={setLanguage}
         />
-        <DemoRequestPage />
+        <DemoRequestPage copy={copy.demoRequest} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.08),transparent_28%),radial-gradient(circle_at_right_10%_top_16%,rgba(31,79,120,0.06),transparent_24%),linear-gradient(180deg,#f7f8f9_0%,#edf1f4_100%)]">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#f6f8f9_0%,#f9fbfc_100%)]">
       <Header
         copy={copy}
         language={language}

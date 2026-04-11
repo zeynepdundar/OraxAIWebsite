@@ -1,4 +1,9 @@
 import { FormEvent, useMemo, useState } from 'react';
+import type { SiteCopy } from '../content/siteContent';
+
+type DemoRequestPageProps = {
+  copy: SiteCopy['demoRequest'];
+};
 
 type DemoFormState = {
   name: string;
@@ -20,25 +25,26 @@ const initialFormState: DemoFormState = {
   note: '',
 };
 
-function DemoRequestPage() {
+function DemoRequestPage({ copy }: DemoRequestPageProps) {
   const [formState, setFormState] = useState<DemoFormState>(initialFormState);
 
   const mailtoLink = useMemo(() => {
-    const subject = 'Demo talebi';
+    const { mailto: m } = copy;
+    const subject = m.subject;
     const body = [
-      'Demo talebi',
+      m.bodyTitle,
       '',
-      `Ad Soyad: ${formState.name || '-'}`,
-      `Sirket: ${formState.company || '-'}`,
-      `E-posta: ${formState.email || '-'}`,
-      `Telefon: ${formState.phone || '-'}`,
-      `Ilgilendigim modul: ${formState.module || '-'}`,
-      `Uygun zaman penceresi: ${formState.timeWindow || '-'}`,
-      `Ek not: ${formState.note || '-'}`,
+      `${m.name}: ${formState.name || '-'}`,
+      `${m.company}: ${formState.company || '-'}`,
+      `${m.email}: ${formState.email || '-'}`,
+      `${m.phone}: ${formState.phone || '-'}`,
+      `${m.module}: ${formState.module || '-'}`,
+      `${m.timeWindow}: ${formState.timeWindow || '-'}`,
+      `${m.note}: ${formState.note || '-'}`,
     ].join('\n');
 
     return `mailto:info@oraxai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [formState]);
+  }, [copy, formState]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,26 +60,33 @@ function DemoRequestPage() {
       <main className="container py-14 md:py-20">
         <a
           href="/"
-          className="inline-flex items-center rounded-full border border-black/10 bg-white/80 px-4 py-2 text-sm font-semibold text-ink transition-all hover:-translate-y-px hover:border-brand/20 hover:bg-white"
+          className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-sm font-semibold text-ink transition-all hover:-translate-y-px hover:border-brand/20 hover:bg-white"
         >
-          Ana sayfaya don
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4 shrink-0"
+            aria-hidden={true}
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          {copy.backHome}
         </a>
 
         <section className="mx-auto mt-8 max-w-3xl rounded-[28px] border border-white/70 bg-white/90 p-6 shadow-panel md:p-10">
-          <h1 className="text-[clamp(1.8rem,3vw,2.5rem)] tracking-[-0.02em] text-ink">Demo talebi</h1>
-          <p className="mt-4 text-[1.04rem] leading-7 text-muted">
-            Urunu canli veya kayitli ortamda gormek ister misiniz?
-          </p>
-          <p className="mt-3 max-w-4xl text-[0.98rem] leading-7 text-muted">
-            Formu doldurun; e-posta uygulamaniz acilacak ve ozeti info@oraxai.com adresine gonderebileceksiniz.
-            Isterseniz metni kopyalayip kurumsal e-postanizdan da iletebilirsiniz. Ekibimiz is ihtiyaci, modul ve
-            zaman penceresine gore donus yapar.
-          </p>
-          <p className="mt-3 text-sm text-muted">Zorunlu alanlar (*) ile isaretlidir.</p>
+          <h1 className="text-[clamp(1.8rem,3vw,2.5rem)] tracking-[-0.02em] text-ink">{copy.title}</h1>
+          <p className="mt-4 text-[1.04rem] leading-7 text-muted">{copy.lead}</p>
+          <p className="mt-3 max-w-4xl text-[0.98rem] leading-7 text-muted">{copy.description}</p>
+          <p className="mt-3 text-sm text-muted">{copy.requiredNote}</p>
 
           <form className="mx-auto mt-8 grid max-w-2xl gap-4 md:grid-cols-2" onSubmit={handleSubmit}>
             <label className="flex flex-col gap-2 text-sm font-medium text-ink">
-              Ad soyad *
+              {copy.fields.name}
               <input
                 type="text"
                 value={formState.name}
@@ -84,7 +97,7 @@ function DemoRequestPage() {
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink">
-              Sirket *
+              {copy.fields.company}
               <input
                 type="text"
                 value={formState.company}
@@ -95,7 +108,7 @@ function DemoRequestPage() {
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink">
-              E-posta *
+              {copy.fields.email}
               <input
                 type="email"
                 value={formState.email}
@@ -106,7 +119,7 @@ function DemoRequestPage() {
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink">
-              Telefon
+              {copy.fields.phone}
               <input
                 type="tel"
                 value={formState.phone}
@@ -116,31 +129,31 @@ function DemoRequestPage() {
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink md:col-span-2">
-              Ilgilendiginiz modul *
+              {copy.fields.module}
               <input
                 type="text"
                 value={formState.module}
                 onChange={(event) => handleChange('module', event.target.value)}
-                placeholder="Ornek: WMS, TMS, LMS..."
+                placeholder={copy.placeholders.module}
                 className="rounded-xl border border-black/10 bg-white px-4 py-3 text-base font-normal text-ink outline-none transition-colors focus:border-brand"
                 required
               />
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink md:col-span-2">
-              Uygun zaman penceresi *
+              {copy.fields.timeWindow}
               <input
                 type="text"
                 value={formState.timeWindow}
                 onChange={(event) => handleChange('timeWindow', event.target.value)}
-                placeholder="Ornek: Hafta ici 10:00-12:00"
+                placeholder={copy.placeholders.timeWindow}
                 className="rounded-xl border border-black/10 bg-white px-4 py-3 text-base font-normal text-ink outline-none transition-colors focus:border-brand"
                 required
               />
             </label>
 
             <label className="flex flex-col gap-2 text-sm font-medium text-ink md:col-span-2">
-              Ek not
+              {copy.fields.note}
               <textarea
                 value={formState.note}
                 onChange={(event) => handleChange('note', event.target.value)}
@@ -154,7 +167,7 @@ function DemoRequestPage() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-brand-deep to-brand px-7 py-4 font-bold text-white shadow-[0_14px_30px_rgba(15,93,97,0.18)] transition-all hover:-translate-y-px hover:shadow-[0_18px_36px_rgba(15,93,97,0.24)]"
               >
-                E-posta uygulamasini ac
+                {copy.submit}
               </button>
             </div>
           </form>

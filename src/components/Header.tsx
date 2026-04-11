@@ -40,7 +40,7 @@ function Header({
         >
           <img
             className="block h-[42px] w-auto object-contain"
-            src="/images/logos/xms-transparent.png"
+            src="/images/logos/just-orax-ai-transparent.png"
             alt="OraxAI"
           />
         </a>

@@ -71,6 +71,7 @@ export type SiteCopy = {
     text: string;
     bullets: string[];
     cta: string;
+    action: string
   };
   contact: {
     eyebrow: string;
@@ -90,6 +91,38 @@ export type SiteCopy = {
     effective: string;
     body: string;
     close: string;
+  };
+  demoRequest: {
+    backHome: string;
+    title: string;
+    lead: string;
+    description: string;
+    requiredNote: string;
+    fields: {
+      name: string;
+      company: string;
+      email: string;
+      phone: string;
+      module: string;
+      timeWindow: string;
+      note: string;
+    };
+    placeholders: {
+      module: string;
+      timeWindow: string;
+    };
+    submit: string;
+    mailto: {
+      subject: string;
+      bodyTitle: string;
+      name: string;
+      company: string;
+      email: string;
+      phone: string;
+      module: string;
+      timeWindow: string;
+      note: string;
+    };
   };
 };
 
@@ -237,6 +270,7 @@ export const siteContent: Record<Language, SiteCopy> = {
         'FDA · TİTCK · EU GMP/GDP odaklı doğrulanabilir tasarım',
       ],
       cta: 'WMSi inceleyin',
+      action: "Demo ve ekran kayıtları ile WMS deneyimi canlı olarak gösterilebilir."
     },
     contact: {
       eyebrow: 'İletişim',
@@ -261,6 +295,39 @@ export const siteContent: Record<Language, SiteCopy> = {
       body:
         'ORAXAI, hizmetlerini kullanrken paylaşılan verileri KVKK ve ilgili veri koruma yükümlülükleri doğrultusunda işler. Kimlik, cihaz, kullanım ve gerekli olduğunda konum verileri; hizmet sunumu, güvenlik, destek ve yasal yükümlülükler kapsamında korunur. Üçüncü taraf servisler yalnızca sınırlı işlevler için kullanılır. Detaylı talepleriniz için info@oraxai.com üzerinden bizimle iletişime geçebilirsiniz.',
       close: 'Kapat',
+    },
+    demoRequest: {
+      backHome: 'Ana sayfaya dön',
+      title: 'Demo talebi',
+      lead: 'Ürünü canlı veya kayıtlı ortamda görmek ister misiniz?',
+      description:
+        'Formu doldurun; e-posta uygulamanız açılacak ve özeti info@oraxai.com adresine gönderebileceksiniz. İsterseniz metni kopyalayıp kurumsal e-postanızdan da iletebilirsiniz. Ekibimiz iş ihtiyacı, modül ve zaman penceresine göre dönüş yapar.',
+      requiredNote: 'Zorunlu alanlar (*) ile işaretlidir.',
+      fields: {
+        name: 'Ad soyad *',
+        company: 'Şirket *',
+        email: 'E-posta *',
+        phone: 'Telefon',
+        module: 'İlgilendiğiniz modül *',
+        timeWindow: 'Uygun zaman penceresi *',
+        note: 'Ek not',
+      },
+      placeholders: {
+        module: 'Örnek: WMS, TMS, LMS…',
+        timeWindow: 'Örnek: Hafta içi 10:00–12:00',
+      },
+      submit: 'E-posta uygulamasını aç',
+      mailto: {
+        subject: 'Demo talebi',
+        bodyTitle: 'Demo talebi',
+        name: 'Ad Soyad',
+        company: 'Şirket',
+        email: 'E-posta',
+        phone: 'Telefon',
+        module: 'İlgilendiğim modül',
+        timeWindow: 'Uygun zaman penceresi',
+        note: 'Ek not',
+      },
     },
   },
   en: {
@@ -288,9 +355,9 @@ export const siteContent: Record<Language, SiteCopy> = {
       secondaryCta: 'Explore modules',
       metrics: [
         'WMS · TMS · LMS · TTS · QMS',
-        'Integrated',
-        'Yerleşik AI & LLM',
-        'Kurumsal ölçek'
+        'Integrated Modules',
+        'Built-in AI & LLM',
+        'Enterprise-Grade Scalability'
       ],
       features: [
         'Inventory and location control',
@@ -405,6 +472,7 @@ export const siteContent: Record<Language, SiteCopy> = {
         'Validation-oriented, FDA · TITCK · EU GMP/GDP focused design',
       ],
       cta: 'Learn WMS',
+      action: "The WMS experience can be demonstrated live through demos and screen recordings."
     },
     contact: {
       eyebrow: 'Contact',
@@ -429,6 +497,39 @@ export const siteContent: Record<Language, SiteCopy> = {
       body:
         'ORAXAI processes shared data in line with applicable privacy obligations. Identity, device, usage, and when required location data may be handled for service delivery, security, support, and legal compliance. Third-party services are used only for limited operational functions. For detailed requests, contact us at info@oraxai.com.',
       close: 'Close',
+    },
+    demoRequest: {
+      backHome: 'Back to home',
+      title: 'Demo request',
+      lead: 'Would you like to see the product in a live session or a recorded walkthrough?',
+      description:
+        'Fill out the form; your email app will open so you can send the summary to info@oraxai.com. You can also copy the text and send it from your corporate inbox. Our team will respond based on your needs, modules, and time window.',
+      requiredNote: 'Required fields are marked with (*).',
+      fields: {
+        name: 'Full name *',
+        company: 'Company *',
+        email: 'Email *',
+        phone: 'Phone',
+        module: 'Module of interest *',
+        timeWindow: 'Preferred time window *',
+        note: 'Additional notes',
+      },
+      placeholders: {
+        module: 'e.g. WMS, TMS, LMS…',
+        timeWindow: 'e.g. Weekdays 10:00–12:00',
+      },
+      submit: 'Open email app',
+      mailto: {
+        subject: 'Demo request',
+        bodyTitle: 'Demo request',
+        name: 'Full name',
+        company: 'Company',
+        email: 'Email',
+        phone: 'Phone',
+        module: 'Module of interest',
+        timeWindow: 'Preferred time window',
+        note: 'Additional notes',
+      },
     },
   },
 };
