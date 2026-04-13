@@ -37,8 +37,8 @@ export type SiteCopy = {
     secondaryCta: string;
     metrics: string[];
     features: string[];
-    title2:string;
-    text:string
+    title2: string;
+    text: string
   };
   showcaseTitle: string;
   showcaseText: string;
@@ -133,8 +133,7 @@ export const productAccent = ['copper', 'teal', 'slate', 'gold', 'berry'] as con
 
 export const siteContent: Record<Language, SiteCopy> = {
   tr: {
-    metaTitle:
-      'OraxAI - AI tabanli kurumsal operasyon platformu | WMS, TMS, LMS, TTS, QMS',
+    metaTitle: "OraxAI - Akıllı Depo ve Kurumsal Operasyonlar",
     metaDescription:
       'OraxAI: yapay zeka destekli kurumsal operasyon platformu. WMS, TMS, LMS, TTS ve QMS ile depo, sevkiyat, eğitim, izlenebilirlik ve kaliteyi tek veri modelinde birleştirin. SAP, Oracle ve Dynamics entegrasyonu; regüle sektörlere uygun tasarım.',
     demoMetaTitle: 'Ücretsiz demo talebi | OraxAI',
@@ -166,13 +165,13 @@ export const siteContent: Record<Language, SiteCopy> = {
         'Yerleşik AI & LLM',
         'Kurumsal ölçek'
       ],
-      features:[
+      features: [
         'Stok ve lokasyon yönetimi',
         'Palet ve lot izlenebilirliği',
         'AI destekli operasyon akışları',
       ],
       title2: "Yapay Zeka Destekli Depo",
-      text:"Gerçek Operasyonlar için Üretildi"
+      text: "Gerçek Operasyonlar için Üretildi"
     },
     showcaseTitle: 'Tek ürün değil, tek operasyon dilinde',
     showcaseText:
@@ -339,8 +338,7 @@ export const siteContent: Record<Language, SiteCopy> = {
     },
   },
   en: {
-    metaTitle:
-      'OraxAI - AI-native enterprise operations platform | WMS, TMS, LMS, TTS, QMS',
+    metaTitle: "OraxAI - AI for Warehouse & Enterprise Operations",
     metaDescription:
       'OraxAI is an AI-native enterprise operations platform. Unify WMS, TMS, LMS, TTS, and QMS with ERP integrations (SAP, Oracle, Dynamics) and compliance-ready design for pharma and regulated operations.',
     demoMetaTitle: 'Request a demo | OraxAI',
@@ -364,7 +362,7 @@ export const siteContent: Record<Language, SiteCopy> = {
       highlight: 'operations platform',
       lead:
         'OraxAI is a working platform built to manage warehouse operations, inventory, locations, pallet movements, and traceability through one shared data model and decision layer.',
-      primaryCta: 'Book a free demo',
+      primaryCta: 'Request a Demo',
       secondaryCta: 'Explore modules',
       metrics: [
         'WMS · TMS · LMS · TTS · QMS',
@@ -378,7 +376,7 @@ export const siteContent: Record<Language, SiteCopy> = {
         'AI-assisted workflows',
       ],
       title2: "AI-Powered Warehouse",
-      text:"Built for Real Warehouse Operations" 
+      text: "Built for Real Warehouse Operations"
     },
     showcaseTitle: 'Not separate tools, one operational language',
     showcaseText:
