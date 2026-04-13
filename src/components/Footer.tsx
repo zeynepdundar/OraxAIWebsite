@@ -13,7 +13,7 @@ function Footer({ copy, onOpenPrivacy }: FooterProps) {
           <a className="mb-4 inline-flex items-center" href="#home" aria-label={copy.brandAria}>
             <img
               className="block h-12 w-auto object-contain"
-              src="/images/logos/xms-transparent.png"
+              src="/images/logos/just-orax-ai-transparent.png"
               alt="OraxAI"
             />
           </a>
