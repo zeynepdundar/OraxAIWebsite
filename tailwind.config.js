@@ -33,8 +33,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Manrope", "sans-serif"],
-        display: ["Fraunces", "serif"],
+        sans: ['Arial', 'Helvetica', 'sans-serif'],
       },
       boxShadow: {
         panel: "0 20px 60px rgba(28, 39, 51, 0.12)",

@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   html {
-    /* Sticky header is min-h-[82px]; pad scroll targets so sections aren’t hidden under it */
     scroll-padding-top: 5.125rem;
   }
 
@@ -17,7 +14,8 @@
   }
 
   body {
-    @apply font-sans text-ink antialiased;
+    font-family: Arial, Helvetica, sans-serif;
+    @apply text-ink antialiased;
   }
 
   a {
@@ -26,14 +24,6 @@
 
   p {
     @apply m-0;
-  }
-
-  h1 {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  h2,
-  h3 {
-    @apply font-display;
   }
 }
 
