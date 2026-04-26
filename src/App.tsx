@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import PrivacyModal from './components/PrivacyModal';
@@ -12,18 +13,29 @@ import SpotlightSection from './components/sections/SpotlightSection';
 import { Language, siteContent } from './content/siteContent';
 import DemoRequestPage from './pages/DemoRequestPage';
 import { applySeo } from './seo/applySeo';
-
 function App() {
-  const [language, setLanguage] = useState<Language>('tr');
+  const { lang } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
-
+  const language: Language =
+    lang === 'en' || lang === 'tr' ? lang : 'tr';
   const copy = siteContent[language];
-
+  const isDemoPage = location.pathname.endsWith('/demoRequest');
+  
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    const saved = localStorage.getItem('lang');
+    const browserLang =
+      saved || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    navigate(`/${browserLang}`, { replace: true });
+  }, []);
+  // SEO
   useEffect(() => {
     document.documentElement.lang = language;
-    const path = window.location.pathname === '/demo' ? '/demo' : '/';
-    const isDemo = path === '/demo';
+    const path = location.pathname;
+    const isDemo = isDemoPage;
     applySeo({
       title: isDemo ? copy.demoMetaTitle : copy.metaTitle,
       description: isDemo ? copy.demoMetaDescription : copy.metaDescription,
@@ -31,27 +43,20 @@ function App() {
       language,
     });
   }, [
-    copy.demoMetaDescription,
-    copy.demoMetaTitle,
-    copy.metaDescription,
-    copy.metaTitle,
     language,
+    location.pathname,
+    copy.demoMetaTitle,
+    copy.demoMetaDescription,
+    copy.metaTitle,
+    copy.metaDescription,
   ]);
-
-  const isDemoPage = window.location.pathname === '/demo';
-
   useEffect(() => {
-    if (isDemoPage) {
-      return;
-    }
-
+    if (isDemoPage) return;
     document.body.style.overflow = privacyOpen ? 'hidden' : '';
-
     return () => {
       document.body.style.overflow = '';
     };
   }, [isDemoPage, privacyOpen]);
-
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -59,13 +64,26 @@ function App() {
         setMobileOpen(false);
       }
     };
-
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
-
   const closeMenus = () => setMobileOpen(false);
 
+  const handleLanguageChange = (lang: Language) => {
+    localStorage.setItem('lang', lang);
+    const pathWithoutLang = location.pathname.replace(/^\/(en|tr)/, '') || '/';
+    const isHome = pathWithoutLang === '/';
+  
+    const hash = isHome ? location.hash : '';
+  
+    navigate(`/${lang}${pathWithoutLang}${hash}`);
+  };
+  useEffect(() => {
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  }
+}, [location.pathname, location.hash]);
   if (isDemoPage) {
     return (
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.08),transparent_28%),radial-gradient(circle_at_right_10%_top_16%,rgba(31,79,120,0.06),transparent_24%),linear-gradient(180deg,#f7f8f9_0%,#edf1f4_100%)]">
@@ -75,13 +93,12 @@ function App() {
           mobileOpen={mobileOpen}
           onCloseMenu={closeMenus}
           onToggleMenu={() => setMobileOpen((open) => !open)}
-          onLanguageChange={setLanguage}
+          onLanguageChange={handleLanguageChange}
         />
         <DemoRequestPage copy={copy.demoRequest} />
       </div>
     );
   }
-
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f6f8f9_0%,#f9fbfc_100%)]">
       <Header
@@ -90,9 +107,8 @@ function App() {
         mobileOpen={mobileOpen}
         onCloseMenu={closeMenus}
         onToggleMenu={() => setMobileOpen((open) => !open)}
-        onLanguageChange={setLanguage}
+        onLanguageChange={handleLanguageChange}
       />
-
       <main>
         <HeroSection copy={copy} />
         <ComplianceSection copy={copy} />
@@ -102,11 +118,13 @@ function App() {
         <IntegrationSection copy={copy} />
         <ContactSection copy={copy} />
       </main>
-
       <Footer copy={copy} onOpenPrivacy={() => setPrivacyOpen(true)} />
-      <PrivacyModal copy={copy} open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      <PrivacyModal
+        copy={copy}
+        open={privacyOpen}
+        onClose={() => setPrivacyOpen(false)}
+      />
     </div>
   );
 }
-
 export default App;
