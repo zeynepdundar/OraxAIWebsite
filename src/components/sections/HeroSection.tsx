@@ -4,51 +4,7 @@ import { SiteCopy } from '../../content/siteContent';
 type HeroSectionProps = {
   copy: SiteCopy;
 };
-type HeroProductCardProps = {
-  copy: SiteCopy;
-  imageClassName: string;
-  overlayClassName: string;
-  fetchPriority?: 'high' | 'low' | 'auto';
-};
-function HeroProductCard({
-  copy,
-  imageClassName,
-  overlayClassName,
-  fetchPriority = 'auto',
-}: HeroProductCardProps) {
-  const imageAlt = `${copy.hero.title2}: ${copy.hero.text}`;
-  return (
-    <div className="relative h-full w-full">
-      <img
-        src="/images/site/oraxa-pict.png"
-        alt={imageAlt}
-        className={imageClassName}
-        fetchPriority={fetchPriority}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
-      <div
-        className={`absolute inset-0 flex flex-col justify-end text-white ${overlayClassName}`}
-      >
-        <p className="inline-flex w-fit items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-          {copy.hero.title2}
-        </p>
-        <h2 className="mt-2 max-w-[14ch] text-[clamp(1.65rem,6vw,3.1rem)] tracking-[-0.045em] md:text-[clamp(2.1rem,4vw,3.1rem)]">
-          {copy.hero.text}
-        </h2>
-        <div className="mt-4 flex flex-wrap gap-2 md:mt-5 md:gap-3">
-          {copy.hero.features.map((feature) => (
-            <span
-              key={feature}
-              className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white backdrop-blur-sm md:px-4 md:py-2 md:text-sm"
-            >
-              {feature}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+
 function HeroSection({ copy }: HeroSectionProps) {
   const heroBadges = copy.hero.badge.split('·').map((item) => item.trim());
   const { lang } = useParams();
@@ -56,88 +12,79 @@ function HeroSection({ copy }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pb-20 pt-24 md:pt-[6.75rem]"
+      className="relative -mt-[82px] flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[#0a1a30] pb-10 pt-[110px] text-white"
     >
-      <div className="pointer-events-none absolute -left-40 top-16 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(69,139,201,0.18),transparent_68%)] blur-[18px]" />
-      <div className="pointer-events-none absolute -right-32 top-8 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(31,79,120,0.14),transparent_68%)] blur-[18px]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(255,255,255,0.45),transparent)]" />
-      <div className="container grid items-start gap-10 md:grid-cols-[1.18fr_1fr]">
-        <div className="relative z-10 min-w-0 pr-2">
-          <div className="mb-6 flex flex-wrap gap-x-4 gap-y-2">
-            {heroBadges.map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center gap-2 text-[0.74rem] font-extrabold uppercase tracking-[0.09em] text-brand-deep/90"
-              >
-                <span className="h-2 w-2 rounded-full bg-gradient-to-br from-brand to-accent shadow-[0_0_0_4px_rgba(69,139,201,0.08)]" />
-                {item}
-              </span>
-            ))}
-          </div>
-          <h1 className="text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.05] tracking-[-0.03em]">
-            <span className="block whitespace-nowrap">{copy.hero.title}</span>
-            <span className="mt-1.5 block whitespace-nowrap bg-gradient-to-br from-brand via-sky-500 to-brand-deep bg-clip-text text-transparent">
+      {/* Full-bleed cinematic warehouse background */}
+      <img
+        src="/images/site/oraxa-pict.png"
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+      />
+      {/* Modern navy/blue cinematic scrims — dark on the left for text, warehouse stays visible on the right */}
+      <div className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(8,23,46,0.92)_0%,rgba(11,32,61,0.6)_38%,rgba(11,32,61,0.14)_70%,transparent_100%)]" />
+      <div className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(8,23,46,0.5)_0%,transparent_32%,rgba(6,17,34,0.62)_100%)]" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(115%_85%_at_8%_95%,rgba(37,99,175,0.55),transparent_55%)]" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(90%_70%_at_95%_10%,rgba(69,139,201,0.28),transparent_60%)]" />
+
+      <div className="container relative z-10 pb-10 md:pb-16">
+        <div className="max-w-3xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/80" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+            </span>
+            {heroBadges[0]}
+          </span>
+
+          <h1 className="mt-6 text-[clamp(2rem,4.4vw,3.5rem)] font-extrabold leading-[1.06] tracking-[-0.03em]">
+            <span className="block">{copy.hero.title}</span>
+            <span className="block bg-gradient-to-r from-white via-brand-soft to-brand bg-clip-text text-transparent">
               {copy.hero.highlight}
             </span>
           </h1>
-          <p className="mt-4 max-w-[44rem] text-[1rem] leading-[1.65] text-muted md:text-[1.05rem]">
+
+          <p className="mt-5 max-w-2xl text-[0.98rem] leading-[1.65] text-white/75 md:text-[1.08rem]">
             {copy.hero.lead}
           </p>
-          <div className="mt-6 space-y-2 text-[0.95rem] text-muted">
-            {copy.hero.metrics.map((item) => (
-              <div key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
               href={`/${lang}/demoRequest`}
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-brand-deep to-brand px-6 py-4 font-bold text-white shadow-[0_14px_30px_rgba(15,93,97,0.18)] transition-all hover:-translate-y-px hover:shadow-[0_18px_36px_rgba(15,93,97,0.24)]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-brand to-brand-deep px-7 py-3.5 text-[1rem] font-bold text-white shadow-[0_16px_40px_rgba(31,79,120,0.45)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(31,79,120,0.55)]"
             >
               {copy.hero.primaryCta}
+              <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
             </a>
             <a
               href="#products"
-              className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-4 font-bold text-ink transition-all hover:-translate-y-px hover:border-brand/20 hover:bg-white"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-[1rem] font-bold text-white backdrop-blur transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
             >
               {copy.hero.secondaryCta}
             </a>
           </div>
-          {/* Mobile: show primary product visual (desktop keeps layered collage in second column) */}
-          <figure className="relative z-10 mt-10 aspect-[4/5] w-full max-w-lg overflow-hidden rounded-2xl border border-gray-200 shadow-xl sm:aspect-[16/10] md:hidden">
-            <HeroProductCard
-              copy={copy}
-              imageClassName="h-full w-full object-cover"
-              overlayClassName="p-5 sm:p-6"
-              fetchPriority="high"
-            />
-          </figure>
         </div>
-        <div className="hidden md:flex justify-end">
-          <div className="absolute right-0  w-[48vw]">
-            <figure className="relative min-h-[520px] overflow-visible">
-              <img
-                src="/images/site/depo-koridor.jpg"
-                alt=""
-                loading="lazy"
-                aria-hidden="true"
-                className="absolute left-0 top-0 h-[70%] w-[70%] rotate-[-4deg] rounded-2xl border border-gray-200 object-cover shadow-md"
-              />
-              <div className="absolute bottom-0 right-0 z-10 h-[80%] w-[80%]">
-                <HeroProductCard
-                  copy={copy}
-                  imageClassName="h-full w-full rounded-2xl border border-gray-200 object-cover shadow-xl"
-                  overlayClassName="p-8"
-                  fetchPriority="high"
-                />
-              </div>
-            </figure>
+
+        {/* Module strip */}
+        <div className="mt-10 border-t border-white/15 pt-5 md:mt-14">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="text-[0.66rem] font-bold uppercase tracking-[0.2em] text-white/50">
+              {heroBadges[1] ?? copy.hero.title2}
+            </span>
+            <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[0.85rem] font-semibold text-white/80">
+              {copy.hero.metrics.map((item) => (
+                <span key={item} className="inline-flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-brand" />
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 export default HeroSection;
