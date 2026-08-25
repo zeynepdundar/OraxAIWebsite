@@ -35,7 +35,6 @@ export type SiteCopy = {
     lead: string;
     primaryCta: string;
     secondaryCta: string;
-    metrics: string[];
     features: string[];
     title2: string;
     text: string
@@ -135,7 +134,7 @@ export const siteContent: Record<Language, SiteCopy> = {
   tr: {
     metaTitle: "OraxAI - Akıllı Depo ve Kurumsal Operasyonlar",
     metaDescription:
-      'OraxAI: yapay zeka destekli kurumsal operasyon platformu. WMS, TMS, LMS, TTS ve QMS ile depo, sevkiyat, eğitim, izlenebilirlik ve kaliteyi tek veri modelinde birleştirin. SAP, Oracle ve Dynamics entegrasyonu; regüle sektörlere uygun tasarım.',
+      'OraxAI: yapay zekâ destekli kurumsal operasyon platformu. WMS, TMS, LMS, TTS ve QMS ile depo, sevkiyat, eğitim, izlenebilirlik ve kaliteyi tek veri modelinde birleştirin. SAP, Oracle ve Dynamics entegrasyonu; regüle sektörlere uygun tasarım.',
     demoMetaTitle: 'Ücretsiz demo talebi | OraxAI',
     demoMetaDescription:
       'OraxAI WMS, TMS, LMS, TTS ve QMS için demo talep edin. Ekibimiz ihtiyacınıza göre canlı veya kayıtlı oturum planlar; modül ve zaman penceresine göre dönüş yapar.',
@@ -152,25 +151,18 @@ export const siteContent: Record<Language, SiteCopy> = {
     langLabel: 'Dil secimi',
     hero: {
       badge:
-        'AI tabanlı operasyon platformu · Çok modüllü kurumsal yazılım · İlaç ve regülasyon sektörü deneyimi',
-      title: 'Yapay zeka destekli',
-      highlight: 'operasyon platformu',
-      lead:
-        'OraxAI; depo operasyonları, stok, lokasyon, palet hareketleri ve izlenebilirlik süreçlerini tek veri yapısını ve karar desteğiyle yönetmeniz için tasarlanmış kurumsal bir çalışma platformudur.',
+        'Yapay zekâ destekli operasyonlar',
+      title: 'Daha akıllı yönetin.',
+      highlight: 'Daha verimli çalışın.',
+      lead: 'ORAXAI; depo, taşımacılık, kalite ve diğer operasyonel süreçleri tek bir platformda yönetmenizi sağlar.',
       primaryCta: 'Ücretsiz demo alın',
       secondaryCta: 'Ürünleri inceleyin',
-      metrics: [
-        'WMS · TMS · LMS · TTS · QMS',
-        'Entegre modüller',
-        'Yerleşik AI & LLM',
-        'Kurumsal ölçek'
-      ],
       features: [
         'Stok ve lokasyon yönetimi',
         'Palet ve lot izlenebilirliği',
         'AI destekli operasyon akışları',
       ],
-      title2: "Yapay Zeka Destekli Depo",
+      title2: "Yapay Zekâ Destekli Depo",
       text: "Gerçek Operasyonlar için Üretildi"
     },
     showcaseTitle: 'Tek ürün değil, tek operasyon dilinde',
@@ -191,7 +183,7 @@ export const siteContent: Record<Language, SiteCopy> = {
       eyebrow: 'Ürün ailesi',
       title: 'OraxAI modulleri',
       desc:
-        'Yapay zeka modüllerimiz burada yüksek seviyede sunulur; her biri kendi ürün sayfasında teknik detaylarıyla ele alınır.', items: [
+        'Yapay zekâ modüllerimiz burada yüksek seviyede sunulur; her biri kendi ürün sayfasında teknik detaylarıyla ele alınır.', items: [
           {
             tag: 'Depo ve stok',
             name: 'WMS',
@@ -291,7 +283,7 @@ export const siteContent: Record<Language, SiteCopy> = {
     },
     footer: {
       text:
-        'OraxAI, yapay zeka destekli kurumsal operasyon platformudur: WMS, TMS, LMS, TTS ve QMS modulleriyle depodan kaliteye entegre cozumler sunar.',
+        'OraxAI, yapay zekâ destekli kurumsal operasyon platformudur: WMS, TMS, LMS, TTS ve QMS modulleriyle depodan kaliteye entegre cozumler sunar.',
       privacy: 'Gizlilik politikası',
       copyright:
         '© 2026 ORAXAI YAZILIM VE TEKNOLOJI LIMITED SIRKETI. Tüm hakları saklıdır.',
@@ -357,19 +349,12 @@ export const siteContent: Record<Language, SiteCopy> = {
     langLabel: 'Language switcher',
     hero: {
       badge:
-        'AI based enterprise operations platform · Multi-module enterprise software · Pharma and regulated-industry expertise',
-      title: 'AI-powered',
-      highlight: 'operations platform',
-      lead:
-        'OraxAI is a working platform built to manage warehouse operations, inventory, locations, pallet movements, and traceability through one shared data model and decision layer.',
+        'AI-powered operations',
+      title: 'Manage smarter.',
+      highlight: 'Operate better.',
+      lead: 'ORAXAI brings warehouse, transport, quality, and other operational processes together in one intelligent platform.',
       primaryCta: 'Request a Demo',
       secondaryCta: 'Explore modules',
-      metrics: [
-        'WMS · TMS · LMS · TTS · QMS',
-        'Integrated Modules',
-        'Built-in AI & LLM',
-        'Enterprise-Grade Scalability'
-      ],
       features: [
         'Inventory and location control',
         'Pallet and lot traceability',
