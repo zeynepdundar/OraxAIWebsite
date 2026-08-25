@@ -1,3 +1,5 @@
+import { ArrowUpRight } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import { SiteCopy } from '../content/siteContent';
 
 type FooterProps = {
@@ -6,63 +8,62 @@ type FooterProps = {
 };
 
 function Footer({ copy, onOpenPrivacy }: FooterProps) {
+  const { lang = 'tr' } = useParams();
+
   return (
-    <footer className="pt-8 pb-10">
+    <footer className="pt-8 pb-8">
       <div className="container">
         {/* CTA */}
-        <div className="rounded-[28px] bg-[#08172e] px-7 py-10 text-white md:px-10 md:py-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-soft">
-                {copy.footer.ctaEyebrow}
-              </p>
+        <div className="flex flex-col gap-6 border-y border-black/[0.08] py-12 md:flex-row md:items-center md:justify-between md:py-14">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-deep">
+              {copy.footer.ctaEyebrow}
+            </p>
 
-              <h2 className="mt-3 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold leading-tight tracking-[-0.03em]">
-                {copy.footer.ctaTitle}
-              </h2>
+            <h2 className="mt-3 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-[-0.04em] text-ink">
+              {copy.footer.ctaTitle}
+            </h2>
 
-              <p className="mt-3 max-w-xl leading-7 text-white/70">
-                {copy.footer.ctaText}
-              </p>
-            </div>
-
-            <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col">
-              <a
-                href="/tr/demoRequest"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-soft"
-              >
-                {copy.footer.ctaButton}
-                <span>→</span>
-              </a>
-
-              <a
-                href="mailto:info@oraxai.com"
-                className="text-center text-sm font-semibold text-white/70 transition-colors hover:text-white"
-              >
-                info@oraxai.com
-              </a>
-            </div>
+            <p className="mt-2 max-w-xl text-base leading-7 text-muted">
+              {copy.footer.ctaText}
+            </p>
           </div>
+
+          <a
+            href={`/${lang}/demoRequest`}
+            className="group inline-flex shrink-0 items-center gap-2 text-sm font-bold text-brand-deep"
+          >
+            {copy.footer.ctaButton}
+
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
 
-        {/* Footer bottom */}
-        <div className="mt-8 flex flex-col gap-5 border-t border-black/10 pt-7 md:flex-row md:items-center md:justify-between">
+        {/* Footer */}
+        <div className="flex flex-col gap-5 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <a
             className="inline-flex items-center"
             href="#home"
             aria-label={copy.brandAria}
           >
             <img
-              className="block h-9 w-auto object-contain"
+              className="block h-8 w-auto object-contain"
               src="/images/logos/orax-ai-transparent.png"
               alt="OraxAI"
             />
           </a>
 
-          <div className="flex flex-col gap-3 text-sm text-muted md:flex-row md:items-center md:gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+            <a
+              href="mailto:info@oraxai.com"
+              className="font-medium transition-colors hover:text-brand-deep"
+            >
+              info@oraxai.com
+            </a>
+
             <button
               type="button"
-              className="text-left font-semibold transition-colors hover:text-brand-deep"
+              className="font-medium transition-colors hover:text-brand-deep"
               onClick={onOpenPrivacy}
             >
               {copy.footer.privacy}
