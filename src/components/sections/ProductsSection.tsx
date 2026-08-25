@@ -1,11 +1,14 @@
 import SectionHeading from '../SectionHeading';
 import { productAccent, SiteCopy } from '../../content/siteContent';
+import { ArrowUpRight } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 
 type ProductsSectionProps = {
   copy: SiteCopy;
 };
 
 function ProductsSection({ copy }: ProductsSectionProps) {
+  const { lang = 'tr' } = useParams();
   return (
     <section
       className="relative py-8 pb-[5.5rem]"
@@ -48,8 +51,9 @@ function ProductsSection({ copy }: ProductsSectionProps) {
                 : '-left-8 -bottom-8';
 
             return (
-              <article
+              <a
                 key={item.name}
+                href={`/${lang}/products/${item.name.toLowerCase()}`}
                 className={`group relative overflow-hidden rounded-[26px] border border-white/20 bg-gradient-to-br from-slate-900/95 to-slate-800/95 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-white/30 ${glowClass}`}
               >
                 {/* Glow blob */}
@@ -73,7 +77,8 @@ function ProductsSection({ copy }: ProductsSectionProps) {
                 <p className="relative mt-3 leading-7 text-slate-100">
                   {item.text}
                 </p>
-              </article>
+                <span className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-white">{lang === 'en' ? 'Explore' : 'İncele'}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+              </a>
             );
           })}
         </div>

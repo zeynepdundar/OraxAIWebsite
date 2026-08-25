@@ -12,6 +12,8 @@ import ProductsSection from './components/sections/ProductsSection';
 import SpotlightSection from './components/sections/SpotlightSection';
 import { Language, siteContent } from './content/siteContent';
 import DemoRequestPage from './pages/DemoRequestPage';
+import ProductPage from './pages/ProductPage';
+import { productContent, ProductSlug } from './content/productContent';
 import { applySeo } from './seo/applySeo';
 function App() {
   const { lang } = useParams();
@@ -23,6 +25,9 @@ function App() {
     lang === 'en' || lang === 'tr' ? lang : 'tr';
   const copy = siteContent[language];
   const isDemoPage = location.pathname.endsWith('/demoRequest');
+  const productMatch = location.pathname.match(/^\/(?:tr|en)\/products\/(wms|tms|lms|tts|qms)\/?$/);
+  const productSlug = productMatch?.[1] as ProductSlug | undefined;
+  const productPageCopy = productSlug ? productContent[language][productSlug] : undefined;
   
   useEffect(() => {
     if (location.pathname !== '/') return;
@@ -36,9 +41,11 @@ function App() {
     document.documentElement.lang = language;
     const path = location.pathname;
     const isDemo = isDemoPage;
+    const title = productPageCopy?.metaTitle ?? (isDemo ? copy.demoMetaTitle : copy.metaTitle);
+    const description = productPageCopy?.metaDescription ?? (isDemo ? copy.demoMetaDescription : copy.metaDescription);
     applySeo({
-      title: isDemo ? copy.demoMetaTitle : copy.metaTitle,
-      description: isDemo ? copy.demoMetaDescription : copy.metaDescription,
+      title,
+      description,
       path,
       language,
     });
@@ -49,6 +56,7 @@ function App() {
     copy.demoMetaDescription,
     copy.metaTitle,
     copy.metaDescription,
+    productPageCopy,
   ]);
   useEffect(() => {
     if (isDemoPage) return;
@@ -96,6 +104,16 @@ function App() {
           onLanguageChange={handleLanguageChange}
         />
         <DemoRequestPage copy={copy.demoRequest} />
+      </div>
+    );
+  }
+  if (productSlug && productPageCopy) {
+    return (
+      <div className="min-h-screen bg-[linear-gradient(180deg,#f6f8f9_0%,#f9fbfc_100%)]">
+        <Header copy={copy} language={language} mobileOpen={mobileOpen} onCloseMenu={closeMenus} onToggleMenu={() => setMobileOpen((open) => !open)} onLanguageChange={handleLanguageChange} />
+        <ProductPage copy={productPageCopy} language={language} slug={productSlug} />
+        <Footer copy={copy} onOpenPrivacy={() => setPrivacyOpen(true)} />
+        <PrivacyModal copy={copy} open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       </div>
     );
   }

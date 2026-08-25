@@ -1,11 +1,13 @@
 import SectionHeading from '../SectionHeading';
 import { SiteCopy } from '../../content/siteContent';
+import { useParams } from 'react-router-dom';
 
 type SpotlightSectionProps = {
   copy: SiteCopy;
 };
 
 function SpotlightSection({ copy }: SpotlightSectionProps) {
+  const { lang = 'tr' } = useParams();
   return (
     <section className="py-6 pb-[5.5rem]" id="spotlight">
       <div className="container grid items-stretch gap-6 lg:grid-cols-[1fr_0.9fr]">
@@ -22,7 +24,7 @@ function SpotlightSection({ copy }: SpotlightSectionProps) {
           </ul>
           <a
             className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-br from-brand-deep to-brand px-6 py-4 font-bold text-white shadow-[0_14px_30px_rgba(15,93,97,0.22)] transition-transform hover:-translate-y-px"
-            href="#contact"
+            href={`/${lang}/products/wms`}
           >
             {copy.spotlight.cta}
           </a>
