@@ -42,9 +42,11 @@ export type SiteCopy = {
   showcaseTitle: string;
   showcaseText: string;
   compliance: {
-    label: string;
+    eyebrow: string;
+    title: string;
     intro: string;
     chips: string[];
+    note: string
   };
   products: {
     eyebrow: string;
@@ -62,7 +64,6 @@ export type SiteCopy = {
     eyebrow: string;
     title: string;
     desc: string;
-    lead: string;
     sublabel: string;
     chips: string[];
     note: string;
@@ -84,7 +85,10 @@ export type SiteCopy = {
     note: string;
   };
   footer: {
-    text: string;
+    ctaEyebrow: string;
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
     privacy: string;
     copyright: string;
   };
@@ -148,7 +152,7 @@ export const siteContent: Record<Language, SiteCopy> = {
       contact: 'İletişim',
       demo: 'Ücretsiz Demo',
     },
-    langLabel: 'Dil secimi',
+    langLabel: 'Dil seçimi',
     hero: {
       badge:
         'Yapay zekâ destekli operasyonlar',
@@ -167,17 +171,22 @@ export const siteContent: Record<Language, SiteCopy> = {
     },
     showcaseTitle: 'Tek ürün değil, tek operasyon dilinde',
     showcaseText:
-      'Depodan kaliteye, egitimden sevkiyata kadar ayni veri sozluguyle calisan moduller. Kopuk entegrasyonlar yerine tasarim geregi birlikte calisan bir ekosistem.',
+      'Depodan kaliteye, eğitimden sevkiyata kadar aynı veri sözlüğüyle çalışan moduller. Kopuk entegrasyonlar yerine tasarim geregi birlikte çalışan bir ekosistem.',
     compliance: {
-      label: 'Regulasyon ve kurumsal disiplin',
+      eyebrow: 'Regülasyon ve uyumluluk',
+      title: 'Regüle operasyonlar için tasarlandı',
       intro:
-        'Modul bazında FDA, TITCK, EU GMP/GDP, Annex 11, GAMP 5 ve ALCOA+ gibi cercevelere uyum yaklasimi urun ekipleriyle netlestirilir. Teknik mimari ve validasyon paketi talep uzerine paylasilir.',
+        'OraxAI; izlenebilirlik, denetlenebilirlik, veri bütünlüğü ve validasyon gereksinimlerini platform ve modül seviyesinde dikkate alır.',
       chips: [
-        'Çok modüllü platform',
-        'Denetlenebilir kayıt disiplini',
-        'İlaç ve regüle sektör odağı',
-        'SAP · Oracle · ERP ekosistemi',
+        'FDA',
+        'TİTCK',
+        'EU GMP / GDP',
+        'Annex 11',
+        'GAMP 5',
+        'ALCOA+',
       ],
+      note:
+        'Teknik mimari ve validasyon dokümantasyonu talep üzerine paylaşılır.',
     },
     products: {
       eyebrow: 'Ürün ailesi',
@@ -234,18 +243,16 @@ export const siteContent: Record<Language, SiteCopy> = {
         },
         {
           num: '04',
-          title: 'Regulasyon bilinci',
-          text: 'Özellikle ilac ve sağlık süreçlerinde Part 11, Annex 11 ve ALCOA+ disipliniyle tasarlanır.',
-        },
+          title: 'Regülasyon uyumluluğu',
+          text: 'Regüle ilaç ve sağlık operasyonları için uyumluluk ve veri bütünlüğü gözetilerek tasarlanır.',
+        }
       ],
     },
     integration: {
       eyebrow: 'Bağlantı',
       title: 'Kurumsal entegrasyon',
       desc:
-        'OraxAI modülleri; ERP, MES ve kurumsal gözlem yığınınızla birlikte çalışacak şekilde kurgulanır. Veri ve süreç bütünlüğü korunur.',
-      lead:
-        'Üretim ve finans verisi ERPde kalırken saha, lojistik, kalite ve eğitim katmanları platform üzerinden yönetilir. REST/API ve kurumsal kimlik ile SAP, Oracle, Logo, Microsoft Dynamics ve özel sistemlere kontrollü entegrasyon. Hangi modüllerin hangi sırayla açılacağı yüksek seviye yol haritası olarak birlikte planlanır.',
+        'Kontrollü veri sözleşmeleri, OraxAI ile mevcut kurumsal ekosisteminiz arasında bağlantı sağlar.',
       sublabel: 'Uyumlu olduğumuz bazı platformlar',
       chips: [
         'SAP (ECC, S/4HANA)',
@@ -256,7 +263,7 @@ export const siteContent: Record<Language, SiteCopy> = {
         'Uyumsoft, Unity, Tiger',
       ],
       note:
-        'Özel geliştirilmiş yazılımlar ve sektörel sistemlerle entegrasyon ihtiyaçları proje kapsamında değerlendirilir.',
+        'Üretim ve finans ERP üzerinde kalırken; saha operasyonları, lojistik, kalite ve eğitim süreçleri OraxAI üzerinden yönetilir. Özel geliştirilmiş ve sektöre özgü sistemler entegrasyon kapsamı içinde değerlendirilebilir.',
     },
     spotlight: {
       eyebrow: 'Öne çıkan modül',
@@ -264,8 +271,8 @@ export const siteContent: Record<Language, SiteCopy> = {
       text:
         'Depo yönetimi birçok müşteri için giriş kapısı olmaya devam ediyor. 3D ikiz, palet düzeyi detay ve AI destekli saha karar mekanizmalarıyla platformun en olgun yüzeylerinden biri.',
       bullets: [
-        'Street View benzeri 3D depo deneyimi',
-        'Yerleşik LLM ve kurumsal AI genişlemesi',
+        'İnteraktif 3D depo keşfi',
+        'Yerleşik LLM ve kurumsal AI yetenekleri',
         'FDA · TİTCK · EU GMP/GDP odaklı doğrulanabilir tasarım',
       ],
       cta: 'WMSi inceleyin',
@@ -275,18 +282,20 @@ export const siteContent: Record<Language, SiteCopy> = {
       eyebrow: 'İletişim',
       title: 'Ekibimizle bağlantı kurun',
       desc:
-        'Demo, teknik dokumantasyon veya modul bazlı yol haritasi için bize ulaşın.',
+        'Demo, teknik dokümantasyon veya modul bazlı yol haritasi için bize ulaşın.',
       emailLabel: 'E-posta',
       email: 'info@oraxai.com',
       note:
-        'Teknik mimari ve validasyon dokumantasyonu talep üzerine paylaşılır.',
+        'Teknik mimari ve validasyon dokümantasyonu talep üzerine paylaşılır.',
     },
     footer: {
-      text:
-        'OraxAI, yapay zekâ destekli kurumsal operasyon platformudur: WMS, TMS, LMS, TTS ve QMS modulleriyle depodan kaliteye entegre cozumler sunar.',
-      privacy: 'Gizlilik politikası',
-      copyright:
-        '© 2026 ORAXAI YAZILIM VE TEKNOLOJI LIMITED SIRKETI. Tüm hakları saklıdır.',
+      ctaEyebrow: "ORAXAI'ı keşfedin",
+      ctaTitle: 'ORAXAI ile tanışmaya hazır mısınız?',
+      ctaText:
+        'ORAXAI’ın operasyonel ihtiyaçlarınıza nasıl uyum sağlayabileceğini keşfedin.',
+      ctaButton: 'Demo talep edin',
+      privacy: 'Gizlilik',
+      copyright: '© 2026 OraxAI. Tüm hakları saklıdır.',
     },
     privacy: {
       title: 'ORAXAI - Gizlilik politikası',
@@ -367,21 +376,25 @@ export const siteContent: Record<Language, SiteCopy> = {
     showcaseText:
       'From warehouse to quality, from training to shipment, every module speaks the same data model. Instead of fragmented integrations, you get an ecosystem designed to work together.',
     compliance: {
-      label: 'Regulation and enterprise rigor',
+      eyebrow: 'Regulatory compliance',
+      title: 'Built for regulated operations',
       intro:
-        'Module-level alignment with FDA, TITCK, EU GMP/GDP, Annex 11, GAMP 5, and ALCOA+ is clarified with the product team. Technical architecture and validation packages are shared on request.',
+        'ORAXAI is designed for regulated environments, with traceability, auditability, data integrity, and validation considered across the platform and its modules.',
       chips: [
-        'Multi-module platform',
-        'Auditable record discipline',
-        'Pharma and regulated sectors',
-        'SAP · Oracle · ERP ecosystem',
+        'FDA',
+        'TITCK',
+        'EU GMP / GDP',
+        'Annex 11',
+        'GAMP 5',
+        'ALCOA+',
       ],
+      note: 'Technical architecture and validation documentation are available on request.',
     },
     products: {
       eyebrow: 'Product family',
       title: 'OraxAI modules',
       desc:
-        'Our AI modules are presented at a high level; each is detailed on its own product page.',
+        'Explore the modules that bring warehouse, transport, learning, traceability, and quality together.',
       items: [
         {
           tag: 'Warehouse and inventory',
@@ -424,17 +437,17 @@ export const siteContent: Record<Language, SiteCopy> = {
         {
           num: '02',
           title: 'AI operations layer',
-          text: 'Decision support and LLM interaction are not limited to a single module; they extend across the platform.',
+          text: 'AI-powered decision support and LLM capabilities extend across the platform.',
         },
         {
           num: '03',
           title: 'Enterprise integration',
-          text: 'Controlled data contracts connect the platform with SAP, Oracle, Dynamics, and local ERP ecosystems.',
+          text: 'Connects with SAP, Oracle, Dynamics, and local ERP ecosystems.',
         },
         {
           num: '04',
-          title: 'Regulatory awareness',
-          text: 'Especially for pharma and healthcare workflows, the platform is shaped with Part 11, Annex 11, and ALCOA+ discipline.',
+          title: 'Regulatory readiness',
+          text: 'Designed for regulated pharma and healthcare operations.',
         },
       ],
     },
@@ -442,10 +455,8 @@ export const siteContent: Record<Language, SiteCopy> = {
       eyebrow: 'Connectivity',
       title: 'Enterprise integration',
       desc:
-        'Designed to work alongside your ERP, MES, and observability stack while preserving process and data integrity.',
-      lead:
-        'Production and finance stay in the ERP while field operations, logistics, quality, and training are managed through the platform. Module rollout sequencing is planned together as a practical roadmap.',
-      sublabel: 'Some of the platforms we integrate with',
+        'Controlled data contracts connect ORAXAI with your existing enterprise ecosystem.',
+      sublabel: 'Connected to your existing ecosystem',
       chips: [
         'SAP (ECC, S/4HANA)',
         'Oracle ERP',
@@ -455,17 +466,17 @@ export const siteContent: Record<Language, SiteCopy> = {
         'Uyumsoft, Unity, Tiger',
       ],
       note:
-        'Integration needs for custom-built software and industry-specific systems are evaluated as part of the project scope.',
+        'Production and finance stay in the ERP while field operations, logistics, quality, and training are managed through ORAXAI.',
     },
     spotlight: {
       eyebrow: 'Featured module',
       title: 'Deep warehouse visibility with WMS',
       text:
-        'Warehouse management remains the entry point for many teams. With 3D twin capabilities, pallet-level detail, and AI-assisted field decisions, WMS is one of the platform’s most mature surfaces.',
+        'WMS is the entry point for many teams, combining 3D warehouse visibility, pallet-level traceability, and AI-assisted operations.',
       bullets: [
-        'Street View-like 3D warehouse exploration',
+        'Interactive 3D warehouse exploration',
+        'Pallet-level operational visibility',
         'Built-in LLM and enterprise AI extensibility',
-        'Validation-oriented, FDA · TITCK · EU GMP/GDP focused design',
       ],
       cta: 'Learn WMS',
       action: "The WMS experience can be demonstrated live through demos and screen recordings."
@@ -480,19 +491,21 @@ export const siteContent: Record<Language, SiteCopy> = {
       note:
         'Technical architecture and validation documentation are available on request.',
     },
-    footer: {
-      text:
-        'OraxAI is an AI-enabled enterprise operations platform connecting warehouse, transport, learning, traceability, and quality in one ecosystem.',
-      privacy: 'Privacy policy',
-      copyright:
-        '© 2026 ORAXAI SOFTWARE AND TECHNOLOGY LIMITED. All rights reserved.',
-    },
     privacy: {
-      title: 'ORAXAI - Privacy policy',
-      effective: 'Effective date: 08/05/2025',
+      title: 'ORAXAI - Privacy Policy',
+      effective: 'Effective date: 05.08.2025',
       body:
-        'ORAXAI processes shared data in line with applicable privacy obligations. Identity, device, usage, and when required location data may be handled for service delivery, security, support, and legal compliance. Third-party services are used only for limited operational functions. For detailed requests, contact us at info@oraxai.com.',
+        'ORAXAI processes data shared while using its services in accordance with applicable data protection obligations. Identity, device, usage, and where necessary location data are protected for service delivery, security, support, and legal compliance. Third-party services are used only for limited functions. For detailed requests, please contact us at info@oraxai.com.',
       close: 'Close',
+    },
+    footer: {
+      ctaEyebrow: 'Explore ORAXAI',
+      ctaTitle: 'Ready to explore ORAXAI?',
+      ctaText:
+        'See how ORAXAI can fit your operational environment.',
+      ctaButton: 'Request a demo',
+      privacy: 'Privacy',
+      copyright: '© 2026 OraxAI. All rights reserved.',
     },
     demoRequest: {
       backHome: 'Back to home',

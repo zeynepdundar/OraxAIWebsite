@@ -77,7 +77,7 @@ function ProductsSection({ copy }: ProductsSectionProps) {
                 <p className="relative mt-3 leading-7 text-slate-100">
                   {item.text}
                 </p>
-                <span className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-white">{lang === 'en' ? 'Explore' : 'İncele'}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+                <span className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-white">{lang === 'en' ? 'Learn more' : 'İncele'}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
               </a>
             );
           })}

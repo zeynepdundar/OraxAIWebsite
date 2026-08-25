@@ -28,7 +28,7 @@ function App() {
   const productMatch = location.pathname.match(/^\/(?:tr|en)\/products\/(wms|tms|lms|tts|qms)\/?$/);
   const productSlug = productMatch?.[1] as ProductSlug | undefined;
   const productPageCopy = productSlug ? productContent[language][productSlug] : undefined;
-  
+
   useEffect(() => {
     if (location.pathname !== '/') return;
     const saved = localStorage.getItem('lang');
@@ -81,17 +81,17 @@ function App() {
     localStorage.setItem('lang', lang);
     const pathWithoutLang = location.pathname.replace(/^\/(en|tr)/, '') || '/';
     const isHome = pathWithoutLang === '/';
-  
+
     const hash = isHome ? location.hash : '';
-  
+
     navigate(`/${lang}${pathWithoutLang}${hash}`);
   };
   useEffect(() => {
-  if (location.hash) {
-    const el = document.querySelector(location.hash);
-    el?.scrollIntoView({ behavior: 'smooth' });
-  }
-}, [location.pathname, location.hash]);
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
   if (isDemoPage) {
     return (
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.08),transparent_28%),radial-gradient(circle_at_right_10%_top_16%,rgba(31,79,120,0.06),transparent_24%),linear-gradient(180deg,#f7f8f9_0%,#edf1f4_100%)]">
@@ -129,12 +129,12 @@ function App() {
       />
       <main>
         <HeroSection copy={copy} />
-        <ComplianceSection copy={copy} />
         <ProductsSection copy={copy} />
         <PlatformSection copy={copy} />
         <SpotlightSection copy={copy} />
         <IntegrationSection copy={copy} />
-        <ContactSection copy={copy} />
+        <ComplianceSection copy={copy} />
+        {/* <ContactSection copy={copy} /> */}
       </main>
       <Footer copy={copy} onOpenPrivacy={() => setPrivacyOpen(true)} />
       <PrivacyModal
