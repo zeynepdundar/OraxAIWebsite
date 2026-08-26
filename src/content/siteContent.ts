@@ -7,7 +7,7 @@ export type ProductItem = {
 };
 
 export type PillarItem = {
-  num: string;
+  icon: string;
   title: string;
   text: string;
 };
@@ -227,25 +227,25 @@ export const siteContent: Record<Language, SiteCopy> = {
         'OraxAI\'ı ayıran şey yalnızca özellik listesi değil; modüller arası sürekliliktir. Depodaki lot bilgisi, taşımadaki durum ve kalitedeki sapma aynı operasyon grafiğinde buluşur.',
       pillars: [
         {
-          num: '01',
+          icon: 'Layers3',
           title: 'Ortak platform çekirdeği',
           text: 'Kimlik, yetki, denetim izi ve AI servisleri modüller arasında paylaşılır.',
         },
         {
-          num: '02',
+          icon: 'BrainCircuit',
           title: 'AI operasyon katmanı',
           text: 'Karar desteği ve LLM etkileşimi depo ile sınırlı değildir; tüm platforma yayılır.',
         },
         {
-          num: '03',
+          icon: 'PlugZap',
           title: 'Kurumsal entegrasyon',
-          text: 'SAP, Oracle, Dynamics ve yerel ERPlerle kontrollu veri sözleşmeleri üzerinden ilerler.',
+          text: 'SAP, Oracle, Dynamics ve yerel ERP’lerle kontrollü veri sözleşmeleri üzerinden ilerler.',
         },
         {
-          num: '04',
+          icon: 'ShieldCheck',
           title: 'Regülasyon uyumluluğu',
           text: 'Regüle ilaç ve sağlık operasyonları için uyumluluk ve veri bütünlüğü gözetilerek tasarlanır.',
-        }
+        },
       ],
     },
     integration: {
@@ -430,22 +430,22 @@ export const siteContent: Record<Language, SiteCopy> = {
         'What differentiates OraxAI is not just its feature list, but continuity across modules. Lot data in the warehouse, shipment status in transport, and deviations in quality all meet in one operational graph.',
       pillars: [
         {
-          num: '01',
+          icon: 'Layers3',
           title: 'Shared platform core',
           text: 'Identity, authorization, audit trail, and AI services are shared across modules.',
         },
         {
-          num: '02',
+          icon: 'BrainCircuit',
           title: 'AI operations layer',
           text: 'AI-powered decision support and LLM capabilities extend across the platform.',
         },
         {
-          num: '03',
+          icon: 'PlugZap',
           title: 'Enterprise integration',
           text: 'Connects with SAP, Oracle, Dynamics, and local ERP ecosystems.',
         },
         {
-          num: '04',
+          icon: 'ShieldCheck',
           title: 'Regulatory readiness',
           text: 'Designed for regulated pharma and healthcare operations.',
         },

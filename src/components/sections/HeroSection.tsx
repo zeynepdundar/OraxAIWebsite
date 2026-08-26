@@ -31,20 +31,18 @@ function HeroSection({ copy }: HeroSectionProps) {
       {/* Hero content */}
       <div className="container relative z-10 flex flex-1 items-center">
         <div className="w-full max-w-2xl -translate-y-4 md:-translate-y-8">
-          <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
-            <span className="h-px w-6 bg-brand" />
+          <div className="text-xs font-semibold leading-4 uppercase tracking-[0.08em] text-[#80b6d3]">
             {heroBadges[0]}
           </div>
 
-          <h1 className="mt-4 text-[clamp(2.5rem,5vw,4.25rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
+          <h1 className="mt-4 break-words text-[4.75rem] font-normal leading-[5.125rem]">
             <span className="block">{copy.hero.title}</span>
 
             <span className="block bg-gradient-to-r from-brand-soft to-brand bg-clip-text text-transparent">
               {copy.hero.highlight}
             </span>
           </h1>
-
-          <p className="mt-6 max-w-xl text-[1rem] font-medium leading-[1.6] text-white md:text-[1.1rem]">
+          <p className="mt-6 max-w-xl text-base font-normal leading-6 text-white">
             {copy.hero.lead}
           </p>
 
