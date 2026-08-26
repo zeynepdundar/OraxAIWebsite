@@ -35,9 +35,8 @@ function HeroSection({ copy }: HeroSectionProps) {
             {heroBadges[0]}
           </div>
 
-          <h1 className="mt-4 break-words text-[4.75rem] font-normal leading-[5.125rem]">
+          <h1 className="mt-4 break-words text-[3.25rem] leading-[3.6rem] md:text-[4.25rem] md:leading-[4.6rem]">  
             <span className="block">{copy.hero.title}</span>
-
             <span className="block bg-gradient-to-r from-brand-soft to-brand bg-clip-text text-transparent">
               {copy.hero.highlight}
             </span>
