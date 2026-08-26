@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
+
 import { useLocation, useParams } from 'react-router-dom';
+
 import { Globe } from 'lucide-react';
+
 import { Language, SiteCopy } from '../content/siteContent';
+
+const SECTION_IDS = ['products', 'platform', 'integration', 'compliance'] as const;
 
 type HeaderProps = {
   copy: SiteCopy;
@@ -28,10 +33,12 @@ function Header({
 
   // Transparent header over the hero, dark glass header after scrolling.
   const [atTop, setAtTop] = useState(true);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     if (!isHomePage) {
       setAtTop(false);
+      setActiveSection('');
       return;
     }
 
@@ -50,14 +57,78 @@ function Header({
     };
   }, [isHomePage]);
 
+  useEffect(() => {
+    if (!isHomePage) {
+      return;
+    }
+
+    // Scroll pozisyonuna gore aktif bolumu belirle (scroll-spy).
+    const updateActiveSection = () => {
+      const offset = 120; // sticky header yuksekligi + biraz pay
+      let current = '';
+
+      SECTION_IDS.forEach((id) => {
+        const el = document.getElementById(id);
+
+        if (el && el.getBoundingClientRect().top - offset <= 0) {
+          current = id;
+        }
+      });
+
+      // Sayfanin en altindayken son bolum aktif kalsin.
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+
+      if (atBottom) {
+        const lastVisible = SECTION_IDS.filter((id) =>
+          document.getElementById(id),
+        ).pop();
+
+        if (lastVisible) {
+          current = lastVisible;
+        }
+      }
+
+      setActiveSection((prev) => (prev === current ? prev : current));
+    };
+
+    let frame = 0;
+
+    const onScroll = () => {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateActiveSection();
+      });
+    };
+
+    updateActiveSection();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('hashchange', updateActiveSection);
+
+    return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('hashchange', updateActiveSection);
+    };
+  }, [isHomePage]);
+
   const overHero = isHomePage && atTop && !mobileOpen;
 
-const navItems: Array<[string, string]> = [
-  ['products', copy.nav.products],
-  ['platform', copy.nav.platform],
-  ['integration', copy.nav.integration],
-  ['compliance', copy.nav.compliance],
-];
+  const navItems: Array<[string, string]> = SECTION_IDS.map((id) => [
+    id,
+    copy.nav[id],
+  ]);
 
   return (
     <header
@@ -114,20 +185,26 @@ const navItems: Array<[string, string]> = [
             }`}
         >
           <ul className="flex flex-col gap-2 md:flex-row md:gap-5">
-            {navItems.map(([id, label]) => (
-              <li key={id} className="list-none">
-                <a
-                  className={`inline-flex items-center rounded-lg px-2.5 py-1.5 font-semibold transition-all duration-200 ${overHero
-                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
-                    }`}
-                  href={isHomePage ? `#${id}` : `/${language}#${id}`}
-                  onClick={onCloseMenu}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
+            {navItems.map(([id, label]) => {
+              const isActive = activeSection === id;
+
+              return (
+                <li key={id} className="list-none">
+                  <a
+                    className={`inline-flex items-center rounded-lg px-2.5 py-1.5 font-semibold transition-all duration-200 ${isActive
+                        ? 'bg-white/10 text-white'
+                        : overHero
+                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                          : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      }`}
+                    href={isHomePage ? `#${id}` : `/${language}#${id}`}
+                    onClick={onCloseMenu}
+                  >
+                    {label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="mt-4 flex flex-col gap-3 md:mt-0 md:flex-row md:items-center md:gap-5">
