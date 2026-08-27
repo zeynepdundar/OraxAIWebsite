@@ -133,8 +133,8 @@ function Header({
   return (
     <header
       className={`sticky top-0 z-20 transition-all duration-300 ${overHero
-          ? 'bg-transparent'
-          : 'border-b border-white/10 bg-[#08172e]/90 shadow-[0_4px_24px_rgba(0,0,0,0.18)] backdrop-blur-md'
+        ? 'bg-transparent'
+        : 'border-b border-white/10 bg-[#08172e]/90 shadow-[0_4px_24px_rgba(0,0,0,0.18)] backdrop-blur-md'
         }`}
     >
       {/* Subtle top accent */}
@@ -192,10 +192,10 @@ function Header({
                 <li key={id} className="list-none">
                   <a
                     className={`inline-flex items-center rounded-lg px-2.5 py-1.5 font-semibold transition-all duration-200 ${isActive
-                        ? 'bg-white/10 text-white'
-                        : overHero
-                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                          : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-white/10 text-white'
+                      : overHero
+                        ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                        : 'text-white/80 hover:bg-white/10 hover:text-white'
                       }`}
                     href={isHomePage ? `#${id}` : `/${language}#${id}`}
                     onClick={onCloseMenu}
@@ -211,8 +211,8 @@ function Header({
             {/* Language switch */}
             <div
               className={`flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 font-semibold transition-all duration-200 ${overHero
-                  ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                  : 'text-white/80 hover:bg-white/10 hover:text-white'
+                ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                : 'text-white/80 hover:bg-white/10 hover:text-white'
                 }`}
             >
               <Globe
@@ -234,13 +234,13 @@ function Header({
             </div>
 
             {/* CTA */}
-            <a
-              className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2.5 font-semibold text-white shadow-[0_10px_25px_rgba(69,139,201,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-soft hover:shadow-[0_15px_35px_rgba(69,139,201,0.35)]"
-              href={`/${lang}/demoRequest`}
-              onClick={onCloseMenu}
-            >
-              {copy.nav.demo}
-            </a>
+<a
+  className="inline-block w-auto rounded-[3px] bg-brand px-6 py-3 text-center text-[15px] font-medium leading-none text-white fill-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:brightness-105 active:translate-y-0 active:scale-[0.98] active:brightness-95"
+  href={`/${lang}/demoRequest`}
+  onClick={onCloseMenu}
+>
+  {copy.nav.demo}
+</a>
           </div>
         </nav>
       </div>
