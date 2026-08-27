@@ -19,28 +19,28 @@ function PlatformSection({ copy }: PlatformSectionProps) {
   ShieldCheck,
 };
   return (
-    <section className="py-6 pb-[5.5rem]" id="platform">
-      <div className="container">
+    <section className="section-y" id="platform">
+      <div className="reveal container">
         <SectionHeading
           eyebrow={copy.platform.eyebrow}
           title={copy.platform.title}
           description={copy.platform.desc}
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="reveal-stagger grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {copy.platform.pillars.map((pillar) => {
             const Icon = pillarIcons[pillar.icon as keyof typeof pillarIcons];
 
             return (
               <article
-                className="rounded-panel border border-black/10 bg-white/85 p-6 shadow-panel"
+                className="rounded-panel border border-black/10 bg-white/85 p-7 shadow-panel md:p-8"
                 key={pillar.title}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 text-brand-deep">
                   <Icon className="h-5 w-5" strokeWidth={1.8} />
                 </div>
 
-                <h3 className="mt-5 text-[1.55rem] tracking-[-0.04em] text-ink">
+                <h3 className="mt-5 text-[1.55rem] tracking-[-0.025em] text-ink">
                   {pillar.title}
                 </h3>
 

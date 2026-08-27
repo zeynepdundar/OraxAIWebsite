@@ -15,6 +15,7 @@ import DemoRequestPage from './pages/DemoRequestPage';
 import ProductPage from './pages/ProductPage';
 import { productContent, ProductSlug } from './content/productContent';
 import { applySeo } from './seo/applySeo';
+import useScrollReveal from './hooks/useScrollReveal';
 function App() {
   const { lang } = useParams();
   const location = useLocation();
@@ -75,6 +76,9 @@ function App() {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
+  
+  useScrollReveal(location.pathname);
+
   const closeMenus = () => setMobileOpen(false);
 
   const handleLanguageChange = (lang: Language) => {

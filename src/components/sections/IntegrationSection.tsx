@@ -8,8 +8,8 @@ type IntegrationSectionProps = {
 
 function IntegrationSection({ copy }: IntegrationSectionProps) {
   return (
-    <section className="relative py-8 pb-[5.5rem]" id="integration">
-      <div className="container">
+    <section className="section-y relative" id="integration">
+      <div className="reveal container">
         <SectionHeading
           eyebrow={copy.integration.eyebrow}
           title={copy.integration.title}
@@ -72,7 +72,7 @@ function IntegrationSection({ copy }: IntegrationSectionProps) {
                   <Database className="h-5 w-5" />
                 </div>
 
-                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-brand-deep">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-deep">
                   {copy.integration.sublabel}
                 </p>
               </div>

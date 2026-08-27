@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -57,6 +57,68 @@ function Header({
     };
   }, [isHomePage]);
 
+  // A navbar click starts a smooth scroll that travels through every section
+  // between here and the target. The scroll-spy below would mark each of them
+  // active in turn, so their underlines animate one after another. Lock the
+  // spy to the clicked section until the scroll settles.
+  const navLockRef = useRef(false);
+  const navLockTimerRef = useRef<number | undefined>(undefined);
+
+  const releaseNavLock = useCallback(() => {
+    navLockRef.current = false;
+
+    if (navLockTimerRef.current !== undefined) {
+      window.clearTimeout(navLockTimerRef.current);
+      navLockTimerRef.current = undefined;
+    }
+  }, []);
+
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    navLockRef.current = true;
+
+    if (navLockTimerRef.current !== undefined) {
+      window.clearTimeout(navLockTimerRef.current);
+    }
+
+    // Fallback for browsers without `scrollend`; also covers a scroll that
+    // never reaches its target (short page, interrupted navigation).
+    navLockTimerRef.current = window.setTimeout(releaseNavLock, 1200);
+
+    onCloseMenu();
+  };
+
+  useEffect(() => {
+    // A real gesture always wins: browsers cancel an in-flight smooth scroll
+    // on wheel/touch/key input, so the spy must take back over immediately.
+    const gestures = ['wheel', 'touchstart', 'keydown'];
+    const w = window as unknown as {
+      addEventListener: (type: string, listener: () => void, options?: unknown) => void;
+      removeEventListener: (type: string, listener: () => void) => void;
+    };
+    const hasScrollEnd = 'onscrollend' in window;
+
+    gestures.forEach((type) =>
+      w.addEventListener(type, releaseNavLock, { passive: true }),
+    );
+
+    if (hasScrollEnd) {
+      w.addEventListener('scrollend', releaseNavLock);
+    }
+
+    return () => {
+      gestures.forEach((type) => w.removeEventListener(type, releaseNavLock));
+
+      if (hasScrollEnd) {
+        w.removeEventListener('scrollend', releaseNavLock);
+      }
+
+      if (navLockTimerRef.current !== undefined) {
+        window.clearTimeout(navLockTimerRef.current);
+      }
+    };
+  }, [releaseNavLock]);
+
   useEffect(() => {
     if (!isHomePage) {
       return;
@@ -64,6 +126,12 @@ function Header({
 
     // Scroll pozisyonuna gore aktif bolumu belirle (scroll-spy).
     const updateActiveSection = () => {
+      // Nav click in flight: the target is already set, ignore the sections
+      // the page is travelling past.
+      if (navLockRef.current) {
+        return;
+      }
+
       const offset = 120; // sticky header yuksekligi + biraz pay
       let current = '';
 
@@ -191,16 +259,27 @@ function Header({
               return (
                 <li key={id} className="list-none">
                   <a
-                    className={`inline-flex items-center rounded-lg px-2.5 py-1.5 font-semibold transition-all duration-200 ${isActive
-                      ? 'bg-white/10 text-white'
+                    className={`group relative inline-flex items-center px-1 py-1.5 font-semibold transition-colors duration-200 ${isActive
+                      ? 'text-white'
                       : overHero
-                        ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                        : 'text-white/80 hover:bg-white/10 hover:text-white'
+                        ? 'text-white/85 hover:text-white'
+                        : 'text-white/75 hover:text-white'
                       }`}
                     href={isHomePage ? `#${id}` : `/${language}#${id}`}
-                    onClick={onCloseMenu}
+                    aria-current={isActive ? 'page' : undefined}
+                    onClick={() => handleNavClick(id)}
                   >
                     {label}
+                    {/* Active/hover indicator: scales out from the left rather
+                        than fading, so moving between items reads as one
+                        continuous motion. */}
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left rounded-full bg-brand transition-transform duration-300 ease-out motion-reduce:transition-none ${isActive
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100'
+                        }`}
+                    />
                   </a>
                 </li>
               );

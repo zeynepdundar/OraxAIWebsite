@@ -8,17 +8,17 @@ type ComplianceSectionProps = {
 function ComplianceSection({ copy }: ComplianceSectionProps) {
   return (
     <section
-      className="relative py-8 pb-[5.5rem]"
+      className="section-y relative"
       id="compliance"
     >
-      <div className="container">
+      <div className="reveal container">
         <SectionHeading
           eyebrow={copy.compliance.eyebrow}
           title={copy.compliance.title}
           description={copy.compliance.intro}
         />
 
-        <div className="mt-10 flex flex-wrap gap-3">
+        <div className="reveal-stagger mt-10 flex flex-wrap gap-3">
           {copy.compliance.chips.map((chip) => (
             <span
               key={chip}

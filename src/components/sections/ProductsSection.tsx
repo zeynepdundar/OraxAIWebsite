@@ -11,17 +11,17 @@ function ProductsSection({ copy }: ProductsSectionProps) {
   const { lang = 'tr' } = useParams();
   return (
     <section
-      className="relative py-8 pb-[5.5rem]"
+      className="section-y relative"
       id="products"
     >
-      <div className="container">
+      <div className="reveal container">
         <SectionHeading
           eyebrow={copy.products.eyebrow}
           title={copy.products.title}
           description={copy.products.desc}
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="reveal-stagger grid gap-5 md:grid-cols-2 xl:grid-cols-5">
           {copy.products.items.map((item, index) => {
             const gradientClass =
               productAccent[index] === 'copper'
@@ -54,7 +54,7 @@ function ProductsSection({ copy }: ProductsSectionProps) {
               <a
                 key={item.name}
                 href={`/${lang}/products/${item.name.toLowerCase()}`}
-                className={`group relative overflow-hidden rounded-[26px] border border-white/20 bg-gradient-to-br from-slate-900/95 to-slate-800/95 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-white/30 ${glowClass}`}
+                className={`group relative overflow-hidden rounded-[26px] border border-white/20 bg-gradient-to-br from-slate-900/95 to-slate-800/95 p-7 shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-white/30 ${glowClass}`}
               >
                 {/* Glow blob */}
                 <div
@@ -62,13 +62,13 @@ function ProductsSection({ copy }: ProductsSectionProps) {
                 />
 
                 {/* Tag */}
-                <p className="relative text-[0.78rem] font-extrabold uppercase tracking-[0.12em] text-slate-300">
+                <p className="relative text-[0.78rem] font-bold uppercase tracking-[0.12em] text-slate-300">
                   {item.tag}
                 </p>
 
                 {/* Title */}
                 <h3
-                  className={`relative mt-1 text-[1.55rem] tracking-[-0.04em] bg-gradient-to-r ${gradientClass} bg-clip-text font-bold text-transparent`}
+                  className={`relative mt-1 text-[1.55rem] tracking-[-0.025em] bg-gradient-to-r ${gradientClass} bg-clip-text font-bold text-transparent`}
                 >
                   {item.name}
                 </h3>

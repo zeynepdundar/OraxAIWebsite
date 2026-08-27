@@ -9,8 +9,8 @@ type SpotlightSectionProps = {
 function SpotlightSection({ copy }: SpotlightSectionProps) {
   const { lang = 'tr' } = useParams();
   return (
-    <section className="py-6 pb-[5.5rem]" id="spotlight">
-      <div className="container grid items-stretch gap-6 lg:grid-cols-[1fr_0.9fr]">
+    <section className="section-y" id="spotlight">
+      <div className="reveal container grid items-stretch gap-6 lg:grid-cols-[1fr_0.9fr]">
         <div>
           <SectionHeading
             eyebrow={copy.spotlight.eyebrow}
@@ -32,7 +32,7 @@ function SpotlightSection({ copy }: SpotlightSectionProps) {
         <div className="grid min-h-[420px]" aria-hidden="true">
           <div className="overflow-hidden rounded-panel border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(240,242,244,0.98))] shadow-panel">
             <div className="flex min-h-[420px] flex-col justify-between p-6">
-              <div className="rounded-[20px] bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.12),transparent_35%),linear-gradient(135deg,rgba(69,139,201,0.08),rgba(31,79,120,0.04))] p-6">
+              <div className="rounded-[20px] bg-[radial-gradient(circle_at_top_left,rgba(69,139,201,0.12),transparent_35%),linear-gradient(135deg,rgba(69,139,201,0.08),rgba(31,79,120,0.04))] p-7 md:p-8">
                 <img
                   className="mx-auto h-auto max-h-[180px] w-full object-contain"
                   src="/images/logos/wms-transparent.png"
@@ -40,7 +40,7 @@ function SpotlightSection({ copy }: SpotlightSectionProps) {
                 />
               </div>
               <div className="mt-6 rounded-[20px] border border-black/10 bg-white/80 p-5">
-                <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-brand-deep">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-brand-deep">
                   WMS Demo
                 </p>
                 <p className="mt-3 text-base leading-7 text-muted">

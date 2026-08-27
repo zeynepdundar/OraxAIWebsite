@@ -7,9 +7,16 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
-        sm: "1rem",
-        lg: "1.5rem",
+        DEFAULT: "1.25rem",
+        sm: "1.5rem",
+        lg: "2rem",
+      },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1240px",
+        "2xl": "1240px",
       },
     },
     extend: {
@@ -33,7 +40,34 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Arial', 'Helvetica', 'sans-serif'],
+        sans: ['Barlow', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['Barlow', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        condensed: [
+          'Barlow Semi Condensed',
+          'Barlow',
+          'system-ui',
+          'sans-serif',
+        ],
+      },
+      fontSize: {
+        // role-based type scale (size, { lineHeight, letterSpacing })
+        eyebrow: ["0.8125rem", { lineHeight: "1.4", letterSpacing: "0.12em" }],
+        small: ["0.9375rem", { lineHeight: "1.6" }],
+        body: ["1.0625rem", { lineHeight: "1.7" }],
+        lead: ["1.25rem", { lineHeight: "1.6" }],
+        h3: ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.014em" }],
+        h2: ["2.5rem", { lineHeight: "1.15", letterSpacing: "-0.024em" }],
+        display: ["3.75rem", { lineHeight: "1.04", letterSpacing: "-0.032em" }],
+      },
+      letterSpacing: {
+        display: "-0.032em",
+        heading: "-0.024em",
+        tightish: "-0.014em",
+        label: "0.12em",
+      },
+      maxWidth: {
+        measure: "65ch",
+        headline: "18ch",
       },
       boxShadow: {
         panel: "0 20px 60px rgba(28, 39, 51, 0.12)",

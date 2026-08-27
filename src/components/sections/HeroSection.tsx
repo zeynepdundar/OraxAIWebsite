@@ -16,7 +16,7 @@ function HeroSection({ copy }: HeroSectionProps) {
     >
       {/* Full-bleed warehouse background */}
       <img
-        src="/images/site/oraxa-pict.png"
+        src="/images/site/depo.jpeg"
         alt=""
         aria-hidden="true"
         fetchPriority="high"

@@ -20,7 +20,7 @@ function Footer({ copy, onOpenPrivacy }: FooterProps) {
               {copy.footer.ctaEyebrow}
             </p>
 
-            <h2 className="mt-3 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-[-0.04em] text-ink">
+            <h2 className="mt-3 text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[-0.025em] text-ink">
               {copy.footer.ctaTitle}
             </h2>
 

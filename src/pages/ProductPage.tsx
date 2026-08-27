@@ -98,9 +98,9 @@ function ProductPage({ copy, language, slug }: Props) {
                 <img src={productLogo} alt={`OraxAI ${copy.name}`} className="h-auto w-[min(72vw,370px)] object-contain" />
               </div>
             ) : (
-              <div className="flex items-center gap-4"><span className={`bg-gradient-to-r ${accent} bg-clip-text text-5xl font-black tracking-[-0.06em] text-transparent md:text-7xl`}>{copy.name}</span><span className="h-8 w-px bg-white/20" /><span className="max-w-[14rem] text-sm font-bold uppercase tracking-[0.13em] text-slate-300">{copy.label}</span></div>
+              <div className="flex items-center gap-4"><span className={`bg-gradient-to-r ${accent} bg-clip-text text-5xl font-bold tracking-[-0.035em] text-transparent md:text-7xl`}>{copy.name}</span><span className="h-8 w-px bg-white/20" /><span className="max-w-[14rem] text-sm font-bold uppercase tracking-[0.13em] text-slate-300">{copy.label}</span></div>
             )}
-            <h1 className="mt-8 text-[clamp(2.3rem,5vw,4.8rem)] font-bold leading-[1.02] tracking-[-0.05em]">{copy.title}</h1>
+            <h1 className="mt-8 text-[clamp(2.3rem,5vw,4.8rem)] font-bold leading-[1.02] tracking-[-0.03em]">{copy.title}</h1>
             <p className="mt-7 max-w-3xl text-xl leading-8 text-slate-200">{copy.lead}</p>
             <p className="mt-4 max-w-3xl leading-7 text-slate-400">{copy.description}</p>
             <a href={`/${language}/demoRequest`} className="mt-9 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-slate-950 transition hover:-translate-y-0.5">{copy.demo}<ArrowRight className="h-4 w-4" /></a>
@@ -110,8 +110,8 @@ function ProductPage({ copy, language, slug }: Props) {
 
       <section className="py-20 md:py-28">
         <div className="container">
-          <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand">{copy.name}</p>
-          <h2 className="mt-3 text-4xl font-bold tracking-[-0.04em] text-slate-900 md:text-5xl">{copy.capabilitiesTitle}</h2>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand">{copy.name}</p>
+          <h2 className="mt-3 text-4xl font-bold tracking-[-0.025em] text-slate-900 md:text-5xl">{copy.capabilitiesTitle}</h2>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {copy.capabilities.map((item) => <article key={item.title} className="rounded-[24px] border border-slate-200 bg-white p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)]"><CheckCircle2 className="h-6 w-6 text-brand" /><h3 className="mt-5 text-xl font-bold text-slate-900">{item.title}</h3><p className="mt-3 leading-7 text-slate-600">{item.text}</p></article>)}
           </div>
@@ -123,20 +123,20 @@ function ProductPage({ copy, language, slug }: Props) {
         return <>
           <section className="border-y border-slate-200 bg-white py-20 md:py-28">
             <div className="container">
-              <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-orange-600">{detail.eyebrow}</p>
-              <h2 className="mt-3 max-w-3xl text-4xl font-bold tracking-[-0.04em] text-slate-900 md:text-5xl">{detail.title}</h2>
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-orange-600">{detail.eyebrow}</p>
+              <h2 className="mt-3 max-w-3xl text-4xl font-bold tracking-[-0.025em] text-slate-900 md:text-5xl">{detail.title}</h2>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{detail.intro}</p>
               <div className="mt-12 grid gap-6 md:grid-cols-2">
-                {detail.areas.map((area) => <article key={area.num} className="rounded-[28px] border border-slate-200 bg-slate-50 p-7 md:p-8"><span className="text-sm font-black text-orange-600">{area.num}</span><h3 className="mt-4 text-2xl font-bold tracking-[-0.02em] text-slate-900">{area.title}</h3><p className="mt-3 leading-7 text-slate-600">{area.text}</p><ul className="mt-6 space-y-3">{area.bullets.map((bullet) => <li key={bullet} className="flex items-start gap-3 text-sm font-semibold text-slate-700"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-orange-500" />{bullet}</li>)}</ul></article>)}
+                {detail.areas.map((area) => <article key={area.num} className="rounded-[28px] border border-slate-200 bg-slate-50 p-7 md:p-8"><span className="text-sm font-bold text-orange-600">{area.num}</span><h3 className="mt-4 text-2xl font-bold tracking-[-0.02em] text-slate-900">{area.title}</h3><p className="mt-3 leading-7 text-slate-600">{area.text}</p><ul className="mt-6 space-y-3">{area.bullets.map((bullet) => <li key={bullet} className="flex items-start gap-3 text-sm font-semibold text-slate-700"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-orange-500" />{bullet}</li>)}</ul></article>)}
               </div>
             </div>
           </section>
 
           <section className="bg-slate-950 py-20 text-white md:py-28"><div className="container grid gap-6 lg:grid-cols-2">
-            {[{ label: detail.twinLabel, title: detail.twinTitle, text: detail.twinText, points: detail.twinPoints }, { label: detail.aiLabel, title: detail.aiTitle, text: detail.aiText, points: detail.aiPoints }].map((block, index) => <article key={block.label} className="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.05] p-8 md:p-10"><div className={`absolute -right-16 -top-16 h-52 w-52 rounded-full ${index ? 'bg-cyan-400' : 'bg-orange-500'} opacity-10 blur-3xl`} /><p className="relative text-sm font-extrabold uppercase tracking-[0.14em] text-slate-400">{block.label}</p><h2 className="relative mt-4 text-3xl font-bold tracking-[-0.04em]">{block.title}</h2><p className="relative mt-5 leading-7 text-slate-300">{block.text}</p><ul className="relative mt-7 space-y-3">{block.points.map((point) => <li key={point} className="flex gap-3 text-sm font-semibold text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-cyan-400" />{point}</li>)}</ul></article>)}
+            {[{ label: detail.twinLabel, title: detail.twinTitle, text: detail.twinText, points: detail.twinPoints }, { label: detail.aiLabel, title: detail.aiTitle, text: detail.aiText, points: detail.aiPoints }].map((block, index) => <article key={block.label} className="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.05] p-8 md:p-10"><div className={`absolute -right-16 -top-16 h-52 w-52 rounded-full ${index ? 'bg-cyan-400' : 'bg-orange-500'} opacity-10 blur-3xl`} /><p className="relative text-sm font-bold uppercase tracking-[0.14em] text-slate-400">{block.label}</p><h2 className="relative mt-4 text-3xl font-bold tracking-[-0.025em]">{block.title}</h2><p className="relative mt-5 leading-7 text-slate-300">{block.text}</p><ul className="relative mt-7 space-y-3">{block.points.map((point) => <li key={point} className="flex gap-3 text-sm font-semibold text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-cyan-400" />{point}</li>)}</ul></article>)}
           </div></section>
 
-          <section className="py-20 md:py-28"><div className="container grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]"><div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand">WMS · TTS · QMS</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.04em] text-slate-900 md:text-5xl">{detail.traceTitle}</h2><p className="mt-6 text-lg leading-8 text-slate-600">{detail.traceText}</p></div><div className="rounded-[28px] bg-slate-100 p-7 md:p-9"><ul className="space-y-5">{detail.traceItems.map((item) => <li key={item} className="flex items-center gap-4 font-bold text-slate-800"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand shadow-sm"><CheckCircle2 className="h-5 w-5" /></span>{item}</li>)}</ul></div></div></section>
+          <section className="py-20 md:py-28"><div className="container grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]"><div><p className="text-sm font-bold uppercase tracking-[0.14em] text-brand">WMS · TTS · QMS</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.025em] text-slate-900 md:text-5xl">{detail.traceTitle}</h2><p className="mt-6 text-lg leading-8 text-slate-600">{detail.traceText}</p></div><div className="rounded-[28px] bg-slate-100 p-7 md:p-9"><ul className="space-y-5">{detail.traceItems.map((item) => <li key={item} className="flex items-center gap-4 font-bold text-slate-800"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand shadow-sm"><CheckCircle2 className="h-5 w-5" /></span>{item}</li>)}</ul></div></div></section>
         </>;
       })()}
 
@@ -144,16 +144,16 @@ function ProductPage({ copy, language, slug }: Props) {
         const assurance = assuranceContent[language];
         return <section className="border-y border-slate-200 bg-white py-20 md:py-28"><div className="container">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-brand">{assurance.eyebrow}</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.04em] text-slate-900 md:text-5xl">{assurance.title}</h2><p className="mt-6 text-lg leading-8 text-slate-600">{assurance.intro}</p><div className="mt-7 inline-flex rounded-full border border-brand/20 bg-brand/5 px-5 py-2.5 text-sm font-extrabold text-brand">{assurance.standards}</div></div>
-            <div className="space-y-4">{assurance.items.map((item, index) => <article key={item.title} className="flex gap-5 rounded-[24px] border border-slate-200 bg-slate-50 p-6"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-black text-white">0{index + 1}</span><div><h3 className="text-xl font-bold text-slate-900">{item.title}</h3><p className="mt-2 leading-7 text-slate-600">{item.text}</p></div></article>)}</div>
+            <div><p className="text-sm font-bold uppercase tracking-[0.14em] text-brand">{assurance.eyebrow}</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.025em] text-slate-900 md:text-5xl">{assurance.title}</h2><p className="mt-6 text-lg leading-8 text-slate-600">{assurance.intro}</p><div className="mt-7 inline-flex rounded-full border border-brand/20 bg-brand/5 px-5 py-2.5 text-sm font-bold text-brand">{assurance.standards}</div></div>
+            <div className="space-y-4">{assurance.items.map((item, index) => <article key={item.title} className="flex gap-5 rounded-[24px] border border-slate-200 bg-slate-50 p-6"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">0{index + 1}</span><div><h3 className="text-xl font-bold text-slate-900">{item.title}</h3><p className="mt-2 leading-7 text-slate-600">{item.text}</p></div></article>)}</div>
           </div>
           <p className="mt-10 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-6 text-amber-950">{assurance.note}</p>
         </div></section>;
       })()}
 
-      <section className="bg-slate-100 py-20 md:py-24"><div className="container"><h2 className="max-w-2xl text-4xl font-bold tracking-[-0.04em] text-slate-900">{copy.flowTitle}</h2><div className="mt-10 grid gap-5 md:grid-cols-3">{copy.flow.map((item, i) => <div key={item.title} className="relative rounded-[24px] bg-white p-7"><span className={`bg-gradient-to-r ${accent} bg-clip-text text-sm font-black text-transparent`}>0{i + 1}</span><h3 className="mt-4 text-xl font-bold">{item.title}</h3><p className="mt-3 leading-7 text-slate-600">{item.text}</p></div>)}</div></div></section>
+      <section className="bg-slate-100 py-20 md:py-24"><div className="container"><h2 className="max-w-2xl text-4xl font-bold tracking-[-0.025em] text-slate-900">{copy.flowTitle}</h2><div className="mt-10 grid gap-5 md:grid-cols-3">{copy.flow.map((item, i) => <div key={item.title} className="relative rounded-[24px] bg-white p-7"><span className={`bg-gradient-to-r ${accent} bg-clip-text text-sm font-bold text-transparent`}>0{i + 1}</span><h3 className="mt-4 text-xl font-bold">{item.title}</h3><p className="mt-3 leading-7 text-slate-600">{item.text}</p></div>)}</div></div></section>
 
-      <section className="py-20 md:py-28"><div className="container"><div className="relative overflow-hidden rounded-[32px] bg-slate-900 p-8 text-white md:p-14"><div className={`absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br ${accent} opacity-20 blur-3xl`} /><Network className="h-9 w-9 text-slate-300" /><h2 className="relative mt-6 text-3xl font-bold tracking-[-0.04em] md:text-4xl">{copy.platformTitle}</h2><p className="relative mt-5 max-w-3xl text-lg leading-8 text-slate-300">{copy.platformText}</p><a href={`/${language}/demoRequest`} className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-slate-950">{copy.demo}<ArrowRight className="h-4 w-4" /></a></div></div></section>
+      <section className="py-20 md:py-28"><div className="container"><div className="relative overflow-hidden rounded-[32px] bg-slate-900 p-8 text-white md:p-14"><div className={`absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br ${accent} opacity-20 blur-3xl`} /><Network className="h-9 w-9 text-slate-300" /><h2 className="relative mt-6 text-3xl font-bold tracking-[-0.025em] md:text-4xl">{copy.platformTitle}</h2><p className="relative mt-5 max-w-3xl text-lg leading-8 text-slate-300">{copy.platformText}</p><a href={`/${language}/demoRequest`} className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-slate-950">{copy.demo}<ArrowRight className="h-4 w-4" /></a></div></div></section>
     </main>
   );
 }
