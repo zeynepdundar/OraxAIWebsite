@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-
 import { useLocation, useParams } from 'react-router-dom';
-
-import { Globe } from 'lucide-react';
-
+import { ChevronDown, Globe } from 'lucide-react';
 import { Language, SiteCopy } from '../content/siteContent';
 
 const SECTION_IDS = ['products', 'platform', 'integration', 'compliance'] as const;
@@ -27,6 +24,8 @@ function Header({
 }: HeaderProps) {
   const location = useLocation();
   const { lang } = useParams();
+
+  const [languageOpen, setLanguageOpen] = useState(false);
 
   const isHomePage = /^\/(en|tr)?\/?$/.test(location.pathname);
   const homeHref = isHomePage ? '#home' : '/#home';
@@ -288,38 +287,77 @@ function Header({
 
           <div className="mt-4 flex flex-col gap-3 md:mt-0 md:flex-row md:items-center md:gap-5">
             {/* Language switch */}
-            <div
-              className={`flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 font-semibold transition-all duration-200 ${overHero
-                ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                : 'text-white/80 hover:bg-white/10 hover:text-white'
-                }`}
-            >
-              <Globe
-                className={`h-4 w-4 ${overHero ? 'text-white/90' : 'text-white/70'
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLanguageOpen((open) => !open)}
+                aria-expanded={languageOpen}
+                aria-haspopup="listbox"
+                className={`group flex h-10 items-center gap-2 rounded-full border px-3.5 transition-all duration-200 ${overHero
+                    ? 'border-white/15 bg-white/5 text-white hover:border-white/25 hover:bg-white/10'
+                    : 'border-white/10 bg-white/[0.04] text-white/90 hover:border-white/20 hover:bg-white/[0.08]'
                   }`}
-              />
-
-              <select
-                id="lang-select"
-                value={language}
-                onChange={(e) =>
-                  onLanguageChange(e.target.value as Language)
-                }
-                className="cursor-pointer appearance-none bg-transparent text-sm font-semibold text-white outline-none [&>option]:text-black"
               >
-                <option value="tr">TR</option>
-                <option value="en">EN</option>
-              </select>
+                <Globe
+                  className={`h-[15px] w-[15px] transition-transform duration-300 group-hover:rotate-12 ${overHero ? 'text-white/80' : 'text-white/65'
+                    }`}
+                />
+
+                <span className="min-w-[20px] text-[13px] font-semibold tracking-wide">
+                  {language.toUpperCase()}
+                </span>
+
+                <ChevronDown
+                  className={`h-3.5 w-3.5 text-white/50 transition-transform duration-200 ${languageOpen ? 'rotate-180' : ''
+                    }`}
+                />
+              </button>
+
+              {languageOpen && (
+                <div
+                  role="listbox"
+                  className="absolute right-0 top-[calc(100%+8px)] z-50 min-w-[120px] overflow-hidden rounded-2xl border border-white/10 bg-[#08172e]/95 p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+                >
+                  {(['tr', 'en'] as Language[]).map((item) => {
+                    const selected = language === item;
+
+                    return (
+                      <button
+                        key={item}
+                        type="button"
+                        role="option"
+                        aria-selected={selected}
+                        onClick={() => {
+                          onLanguageChange(item);
+                          setLanguageOpen(false);
+                        }}
+                        className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-medium transition-all ${selected
+                            ? 'bg-white/10 text-white'
+                            : 'text-white/65 hover:bg-white/[0.06] hover:text-white'
+                          }`}
+                      >
+                        <span>
+                          {item === 'tr' ? 'Türkçe' : 'English'}
+                        </span>
+
+                        {selected && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* CTA */}
-<a
-  className="inline-block w-auto rounded-[3px] bg-brand px-6 py-3 text-center text-[15px] font-medium leading-none text-white fill-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:brightness-105 active:translate-y-0 active:scale-[0.98] active:brightness-95"
-  href={`/${lang}/demoRequest`}
-  onClick={onCloseMenu}
->
-  {copy.nav.demo}
-</a>
+            <a
+              className="inline-block w-auto rounded-[3px] bg-brand px-6 py-3 text-center text-[15px] font-medium leading-none text-white fill-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:brightness-105 active:translate-y-0 active:scale-[0.98] active:brightness-95"
+              href={`/${lang}/demoRequest`}
+              onClick={onCloseMenu}
+            >
+              {copy.nav.demo}
+            </a>
           </div>
         </nav>
       </div>

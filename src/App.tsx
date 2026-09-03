@@ -81,14 +81,17 @@ function App() {
 
   const closeMenus = () => setMobileOpen(false);
 
-  const handleLanguageChange = (lang: Language) => {
-    localStorage.setItem('lang', lang);
+  const handleLanguageChange = (newLanguage: Language) => {
     const pathWithoutLang = location.pathname.replace(/^\/(en|tr)/, '') || '/';
-    const isHome = pathWithoutLang === '/';
 
-    const hash = isHome ? location.hash : '';
+    const hash = pathWithoutLang === '/' ? location.hash : '';
 
-    navigate(`/${lang}${pathWithoutLang}${hash}`);
+  const targetPath =
+    pathWithoutLang === '/'
+      ? `/${newLanguage}`
+      : `/${newLanguage}${pathWithoutLang}`;
+
+  navigate(`${targetPath}${hash}`);
   };
   useEffect(() => {
     if (location.hash) {
